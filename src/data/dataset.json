@@ -1,6 +1,6 @@
 {
  "meta": {
-  "built_at": "2026-10-07T21:32:09.698Z",
+  "built_at": "2026-10-07T21:37:19.540Z",
   "data_as_of": "2026-10-07",
   "sources": [
    "archive/data/seed-data.json",
@@ -16,7 +16,7 @@
   "home_complex": "Bridgeton Municipal Athletic Complex (BMAC), Bridgeton, MO",
   "coach_listed_on_teamsideline": "Bowen",
   "notes": "COTC and Sacrifice Blunt are one continuous franchise. The rename falls between Fall 2021 (last supplied season as COTC) and Fall 2022 (first supplied season as Sacrifice Blunt); the exact session has not been verified.",
-  "championship_count": 5
+  "championship_count": 6
  },
  "eras": [
   {
@@ -473,21 +473,22 @@
    "overall_source": "derived_from_games",
    "runs_for": 121,
    "runs_against": 110,
-   "playoff_finish": "Won title game · under review",
-   "playoff_finish_code": "won_title_game",
+   "playoff_finish": "Champion",
+   "playoff_finish_code": "champion",
    "playoff_status_note": null,
-   "champion": false,
-   "title_under_review": true,
+   "champion": true,
+   "title_under_review": false,
    "undefeated": false,
    "confidence": "verified_regular_season_only",
    "regular_confidence": "verified",
    "postseason_confidence": "verified",
-   "championship_note": null,
-   "postseason_note": "TeamSideline shows Sacrifice Blunt winning the Playoff Round 3 – Championship Round game (G7) 13-12 over Cheers. Three division teams (Local 268, Misfits, Wrecking Crew) are not in this bracket, so it may have been a split-tier bracket. Not counted as a franchise title until team leadership confirms.",
+   "championship_note": "TeamSideline shows Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Team leadership confirmed on Oct 7, 2026 that this was a championship.",
+   "postseason_note": "Won the championship bracket 3-0, including a 13-12 title game over Cheers. Counted as a franchise title per team leadership (Oct 7, 2026).",
    "regular_season_note": null,
-   "source_notes": "Sacrifice Blunt 2025 Spring.pdf",
+   "source_notes": "Sacrifice Blunt 2025 Spring.pdf + team leadership confirmation (2026-10-07)",
    "source_evidence_ids": [
-    "sacrifice-blunt-2025-spring"
+    "sacrifice-blunt-2025-spring",
+    "team-leadership"
    ],
    "schedule_revision": "Wed, Jun 4, 2025 2:23 PM",
    "playoff_revision": "Wed, Jun 4, 2025 2:29 PM",
@@ -19123,6 +19124,27 @@
    ],
    "evidence_image": null,
    "notes": "TeamSideline verifies 12-0 regular season. Team leadership confirms undefeated championship and 14-0 overall record."
+  },
+  {
+   "id": "2025-spring",
+   "slug": "2025-spring",
+   "season_id": "2025-spring",
+   "title": "Spring 2025 Champion",
+   "team_name_at_time": "Sacrifice Blunt",
+   "confidence": "verified",
+   "verification": [
+    "teamsideline_playoff_results",
+    "team_leadership"
+   ],
+   "undefeated": false,
+   "title_game_id": "2025-spring-cheers-1",
+   "postseason_game_ids": [
+    "2025-spring-chester-city-3",
+    "2025-spring-outlaws-3",
+    "2025-spring-cheers-1"
+   ],
+   "evidence_image": null,
+   "notes": "TeamSideline shows Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Team leadership confirmed on Oct 7, 2026 that this was a championship."
   }
  ],
  "players": [
@@ -19459,7 +19481,7 @@
    "title": "Team leadership confirmation",
    "file": null,
    "public_url": null,
-   "coverage": "Summer 2023 title; Spring 2026 undefeated title and 14-0 overall record; player names",
+   "coverage": "Summer 2023 title; Spring 2025 title (confirmed Oct 7, 2026); Spring 2026 undefeated title and 14-0 overall record; player names",
    "confidence": "confirmed"
   }
  ],
@@ -19496,8 +19518,8 @@
    "id": "season-2025-spring",
    "entity": "season",
    "entity_id": "2025-spring",
-   "severity": "decision",
-   "message": "Possible 6th championship. Needs owner decision before it counts."
+   "severity": "info",
+   "message": "Resolved Oct 7, 2026: team leadership confirmed Spring 2025 as a championship (6th title)."
   },
   {
    "id": "season-2026-spring",

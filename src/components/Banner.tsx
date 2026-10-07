@@ -13,7 +13,7 @@ export function Banner({
   const special = title.undefeated;
   const isCotc = season.team_name_at_time !== "Sacrifice Blunt";
   const dims = size === "rafter"
-    ? special ? "w-[64px] h-[150px] sm:w-[92px] sm:h-[206px]" : "w-[54px] h-[122px] sm:w-[78px] sm:h-[168px]"
+    ? special ? "w-[56px] h-[138px] sm:w-[92px] sm:h-[206px]" : "w-[46px] h-[112px] sm:w-[78px] sm:h-[168px]"
     : special ? "w-[150px] h-[300px] sm:w-[176px] sm:h-[352px]" : "w-[124px] h-[250px] sm:w-[148px] sm:h-[296px]";
   const cloth = special ? "bg-cardinal" : "bg-navy";
   const clip = "[clip-path:polygon(0_0,100%_0,100%_100%,50%_88%,0_100%)]";
@@ -30,14 +30,14 @@ export function Banner({
       {/* rod */}
       <div className="absolute inset-x-0 top-0 h-[5px] bg-gold-hi/90" />
       <div className={`relative flex h-full flex-col items-center pt-[14%] text-center ${special ? "text-white" : "text-chalk"}`}>
-        <span className={`wide font-bold leading-none text-gold-hi ${big ? "text-[0.95rem]" : "text-[0.5rem] sm:text-[0.68rem]"}`}>
+        <span className={`wide font-bold leading-none text-gold-hi ${big ? "text-[0.95rem]" : "text-[0.46rem] sm:text-[0.68rem]"}`}>
           {season.session}
         </span>
-        <span className={`display num leading-none ${big ? "mt-2 text-[2.1rem] sm:text-[2.45rem]" : "mt-1 text-[0.92rem] sm:text-[1.3rem]"}`}>
+        <span className={`display num leading-none ${big ? "mt-2 text-[2.1rem] sm:text-[2.45rem]" : "mt-1 text-[0.8rem] sm:text-[1.3rem]"}`}>
           {season.year}
         </span>
         <span className={`mt-[10%] h-px w-1/2 bg-gold/70`} />
-        <span className={`wide mt-[10%] font-extrabold leading-tight ${big ? "text-[0.92rem]" : "text-[0.42rem] sm:text-[0.58rem]"}`}>
+        <span className={`wide mt-[10%] font-extrabold leading-tight ${big ? "text-[0.92rem]" : "hidden text-[0.58rem] sm:block"}`}>
           Champions
         </span>
         {special && (

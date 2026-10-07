@@ -39,7 +39,7 @@ export default function AdminHome() {
           ))}
         </ul>
         <p className="mt-3 text-[0.85rem] text-mute">
-          To count Spring 2025 as a title: set <code className="text-chalk">champion: true</code> for <code className="text-chalk">2025-spring</code> in <code className="text-chalk">archive/data/seed-data.json</code>, add it to <code className="text-chalk">championships</code>, raise <code className="text-chalk">championship_count_currently_supported</code> to 6, and remove <code className="text-chalk">title_under_review</code> from <code className="text-chalk">data/manual/season-annotations.json</code>. The build checks all of these agree.
+          To record a title confirmed by team leadership, add <code className="text-chalk">champion_confirmed_by_leadership: true</code>, a <code className="text-chalk">decision_date</code> and a <code className="text-chalk">championship_note</code> to that season in <code className="text-chalk">data/manual/season-annotations.json</code>, then rebuild. The handoff seed stays untouched and the build checks the title count, banners and championship list agree.
         </p>
       </section>
 

@@ -9,9 +9,11 @@ import { fmtDate } from "@/lib/format";
 
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+const titleCount = getFranchise().championship_count;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: { default: "Sacrifice Blunt — 5-Time Champions", template: "%s · Sacrifice Blunt" },
+  title: { default: `Sacrifice Blunt — ${titleCount}-Time Champions`, template: "%s · Sacrifice Blunt" },
   description:
     "Official history, stats archive and record book of Sacrifice Blunt (originally COTC), men's slow-pitch softball at Bridgeton Municipal Athletic Complex. Home of the 14-0 Spring 2026 undefeated champions.",
   applicationName: "Sacrifice Blunt",

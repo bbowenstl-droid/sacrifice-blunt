@@ -25,7 +25,7 @@ export default function Vault() {
         <div className="kicker text-gold">The Championship Vault</div>
         <h1 className="display mt-3 text-[2.6rem] sm:text-[4.6rem]">{titles.length} titles</h1>
         <p className="serif mx-auto mt-3 max-w-xl text-[1.1rem] italic text-mute">
-          One under the original COTC name, four as Sacrifice Blunt. All count for the same franchise.
+          {(() => { const n = titles.filter((t) => t.team_name_at_time === "COTC").length; const w = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"]; const cap = (x: string) => x[0].toUpperCase() + x.slice(1); return `${cap(w[n] ?? String(n))} under the original COTC name, ${w[titles.length - n] ?? titles.length - n} as Sacrifice Blunt. All count for the same franchise.`; })()}
         </p>
         <div className="mt-10 sm:mt-14"><Rafters titles={titles} seasons={seasons} size="vault" /></div>
       </Container>

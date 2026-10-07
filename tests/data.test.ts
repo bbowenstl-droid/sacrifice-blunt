@@ -5,10 +5,10 @@ import { battingLine, finalize } from "@/lib/stats";
 import type { Game, PlateAppearance } from "@/lib/types";
 
 describe("franchise integrity (handoff acceptance criteria)", () => {
-  it("counts five championships, including COTC Fall 2021", () => {
+  it("counts six championships, including COTC Fall 2021 and leadership-confirmed Spring 2025", () => {
     const titles = getChampionships().map((c) => c.season_id);
-    expect(titles).toEqual(["2021-fall", "2023-spring", "2023-summer", "2025-fall", "2026-spring"]);
-    expect(getFranchise().championship_count).toBe(5);
+    expect(titles).toEqual(["2021-fall", "2023-spring", "2023-summer", "2025-spring", "2025-fall", "2026-spring"]);
+    expect(getFranchise().championship_count).toBe(6);
     expect(getSeason("2021-fall")!.team_name_at_time).toBe("COTC");
   });
   it("rolls COTC seasons into franchise totals", () => {
@@ -17,7 +17,7 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     const sb = franchiseTotals("sacrifice-blunt");
     expect(all.regular.w).toBe(cotc.regular.w + sb.regular.w);
     expect(all.regular.l).toBe(cotc.regular.l + sb.regular.l);
-    expect(all.championships).toBe(5);
+    expect(all.championships).toBe(6);
     expect(cotc.championships).toBe(1);
     expect(all.seasons).toBe(15);
   });
@@ -46,10 +46,13 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     expect(getSeason("2021-summer")!.runs_for).toBeNull(); // two unreported games
     for (const g of getGames()) if (!g.result) expect(g.team_score).toBeNull();
   });
-  it("keeps Spring 2025 out of the title count while under review", () => {
+  it("counts Spring 2025 after team leadership confirmed it, with its title game linked", () => {
     const s = getSeason("2025-spring")!;
-    expect(s.champion).toBe(false);
-    expect(s.title_under_review).toBe(true);
+    expect(s.champion).toBe(true);
+    expect(s.title_under_review).toBe(false);
+    const c = getChampionships().find((x) => x.season_id === "2025-spring")!;
+    expect(c.title_game_id).toBe("2025-spring-cheers-1");
+    expect(c.verification).toEqual(["teamsideline_playoff_results", "team_leadership"]);
   });
   it("matches the Fall 2026 standings in the handoff", () => {
     expect(getStandings("2026-fall").map((r) => `${r.team} ${r.w}-${r.l}`)).toEqual([

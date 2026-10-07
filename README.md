@@ -2,7 +2,7 @@
 
 The permanent home of **Sacrifice Blunt** (originally **COTC**): schedule and results, every recorded season, the Championship Vault, the record book, head-to-head opponent history, player pages, and the admin tools for scorekeeping.
 
-COTC and Sacrifice Blunt are **one franchise**. COTC seasons, games and the Fall 2021 title roll into every franchise total.
+COTC and Sacrifice Blunt are **one franchise**. COTC seasons, games and the Fall 2021 title roll into every franchise total. The franchise has **6 championships** on record: Fall 2021 (as COTC), Spring 2023, Summer 2023, Spring 2025, Fall 2025 and Spring 2026 (undefeated, 14-0).
 
 ## Quick start
 
@@ -54,7 +54,7 @@ Pipeline:
 
 | Season | Finding | How it's handled |
 |---|---|---|
-| Spring 2025 | Won the Playoff Round 3 – Championship Round game (G7) 13-12 over Cheers. Three division teams weren't in the bracket. | **Not counted.** Shown as "Won title game · under review". Count stays at 5 until leadership decides. |
+| Spring 2025 | Won the Playoff Round 3 – Championship Round game (G7) 13-12 over Cheers after beating Chester City and Outlaws. | **Counted.** Team leadership confirmed it as a championship on Oct 7, 2026 — the 6th title. Recorded in `data/manual/season-annotations.json`; the handoff seed is unchanged. |
 | Summer 2023 | Title-game result (14-4 over Six Mile Bridge) is in the PDF. | Title now has TeamSideline evidence in addition to leadership confirmation. |
 | Spring 2026 | Playoff wins 11-4 and 10-2 are in the PDF, so 14-0 is corroborated. | Season confidence kept as *verified + confirmed* per the handoff; note added. |
 | Fall 2022, Spring 2024, Summer 2025 | Lost in the championship-round game. | Shown as Runner-up. |
@@ -62,7 +62,7 @@ Pipeline:
 | Summer/Fall 2026 | Two July 1 wins vs Minimal Effort have no score (result only). | Count as wins; excluded from score-based records. |
 | Fall 2026 | Playoffs Oct 7, 2026: Round 1 at Cheers, 6:30 PM, F11. | Shown as the next game. No results invented. |
 
-**To count Spring 2025 as a sixth title:** in `archive/data/seed-data.json` set `champion: true` and `playoff_finish: "Champion"` on `2025-spring`, add it to `championships`, set `championship_count_currently_supported` to 6, then remove `title_under_review` from `data/manual/season-annotations.json`. The hero, banners, vault and records update from the data.
+**Recording a title confirmed after the handoff:** add `champion_confirmed_by_leadership: true`, a `decision_date` and a `championship_note` to that season in `data/manual/season-annotations.json`. The build adds it to the championship list and checks that the count, banners and champion seasons all agree. The original seed in `archive/` stays untouched.
 
 ## Adding things
 

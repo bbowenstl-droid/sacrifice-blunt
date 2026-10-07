@@ -28,7 +28,7 @@ export default function RecordsPage() {
     { label: "Championships", value: String(t.championships), detail: getChampionships().map((c) => { const x = getSeason(c.season_id)!; return `${x.session} ${x.year}${x.team_name_at_time === "COTC" ? " (as COTC)" : ""}`; }).join(", "), href: "/championships" },
     { label: "Recorded all-time record", value: rec(t.overall.w, t.overall.l), detail: `${rec(t.regular.w, t.regular.l)} regular season · ${rec(t.postseason.w, t.postseason.l)} postseason`, href: "/seasons" },
     ...seasons.filter((x) => x.undefeated).slice(0, 1).map((u) => ({ label: "Undefeated seasons", value: String(t.undefeated), detail: seasons.filter((x) => x.undefeated).map((x) => `${x.session} ${x.year} (${rec(x.overall_wins, x.overall_losses)} overall)`).join(", "), href: `/seasons/${u.slug}` })),
-    { label: "Championship-round record", value: rec(titleRound.w, titleRound.l), detail: "Title games with a recorded result (includes Spring 2025, under review)", href: "/championships" },
+    { label: "Championship-round record", value: rec(titleRound.w, titleRound.l), detail: "Every championship-round game with a recorded result", href: "/championships" },
     { label: "Postseason win percentage", value: fmtPct(t.postseason.w / (t.postseason.w + t.postseason.l)), detail: `${t.playoffAppearances} seasons with a recorded playoff result` },
   ];
 

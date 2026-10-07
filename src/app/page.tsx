@@ -186,7 +186,7 @@ export default function Home() {
             sub={`${fmtPct(totals.postseason.w / (totals.postseason.w + totals.postseason.l))} in recorded playoff games`}
             href="/records"
           />
-          <StatTile label="Championship-round games" value={rec(titleRound.w, titleRound.l)} sub="Includes Spring 2025's title-game win, which is under review" href="/championships" />
+          <StatTile label="Championship-round games" value={rec(titleRound.w, titleRound.l)} sub="Recorded title-game results" href="/championships" />
           <StatTile label="Regular season, all-time" value={rec(totals.regular.w, totals.regular.l)} sub={`${totals.seasons} recorded seasons, COTC included`} href="/seasons" />
         </section>
 

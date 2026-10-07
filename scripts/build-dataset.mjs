@@ -52,7 +52,7 @@ evidence.push({
   kind: "leadership_confirmation",
   title: "Team leadership confirmation",
   file: null, public_url: null,
-  coverage: "Summer 2023 title; Spring 2026 undefeated title and 14-0 overall record; player names",
+  coverage: "Summer 2023 title; Spring 2025 title (confirmed Oct 7, 2026); Spring 2026 undefeated title and 14-0 overall record; player names",
   confidence: "confirmed",
 });
 const evidenceIdForFile = (f) => slugify(f.replace(/\.pdf$/i, ""));
@@ -104,6 +104,14 @@ for (const s of seed.seasons) {
   if (bad.length) errors.push(`${s.id}: parsed games disagree with printed standings ${JSON.stringify(bad)}`);
 
   const ann = annotations[s.id] ?? {};
+  // A title confirmed by team leadership after the handoff was written (see season-annotations.json)
+  if (ann.champion_confirmed_by_leadership && !s.champion) {
+    s.champion = true;
+    s.playoff_finish = "Champion";
+    s.championship_note = ann.championship_note ?? s.championship_note;
+    s.source = `${s.source} + team leadership confirmation (${ann.decision_date})`;
+    s.leadership_added_title = true;
+  }
   const eraId = s.team_name === "COTC" ? "cotc" : "sacrifice-blunt";
   const srcId = src ? evidenceIdForFile(src.source_file) : null;
 
@@ -229,7 +237,7 @@ for (const s of seed.seasons) {
     postseason_note: ann.postseason_note ?? null,
     regular_season_note: ann.regular_season_note ?? null,
     source_notes: s.source,
-    source_evidence_ids: [srcId, ...(s.source.includes("plaque") ? ["fall-2025-championship-plaque"] : []), ...(s.source.includes("user confirmation") ? ["team-leadership"] : [])].filter(Boolean),
+    source_evidence_ids: [srcId, ...(s.source.includes("plaque") ? ["fall-2025-championship-plaque"] : []), ...(s.source.includes("user confirmation") || s.leadership_added_title ? ["team-leadership"] : [])].filter(Boolean),
     schedule_revision: src?.schedule_revision ?? null,
     playoff_revision: src?.playoff_revision ?? null,
   });
@@ -247,7 +255,10 @@ for (const s of seasons) {
 }
 
 // ---------- championships ----------
-const championships = seed.championships.map((c) => {
+const addedTitles = seed.seasons.filter((x) => x.leadership_added_title).map((x) => ({
+  season_id: x.id, title: `${x.session} ${x.year} Champion`, team_name: x.team_name, confidence: "verified",
+}));
+const championships = [...seed.championships, ...addedTitles].map((c) => {
   const s = seasons.find((x) => x.id === c.season_id);
   const titleGame = games.find((g) => g.season_id === c.season_id && g.is_title_game && g.result === "W");
   const route = games.filter((g) => g.season_id === c.season_id && g.stage === "postseason");
@@ -267,8 +278,9 @@ const championships = seed.championships.map((c) => {
     notes: s.championship_note ?? s.postseason_note ?? null,
   };
 });
-if (championships.length !== seed.franchise.championship_count_currently_supported)
-  errors.push(`Championship count ${championships.length} != seed ${seed.franchise.championship_count_currently_supported}`);
+if (championships.length !== seed.franchise.championship_count_currently_supported + addedTitles.length)
+  errors.push(`Championship count ${championships.length} != seed ${seed.franchise.championship_count_currently_supported} + ${addedTitles.length} leadership-confirmed`);
+if (championships.length !== seasons.filter((x) => x.champion).length) errors.push("Championship list and champion seasons disagree");
 
 // ---------- known-games cross check (seed current_known_games) ----------
 for (const [sid, list] of Object.entries(seed.current_known_games ?? {})) {
