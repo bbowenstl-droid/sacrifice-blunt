@@ -1,0 +1,28 @@
+{
+  "_doc": "Player identities. Only people team leadership has named are listed. Batting stats live in plate-appearances.json / player-game-stats.json and are never typed in here.",
+  "players": [
+    { "slug": "brendan", "name": "Brendan Bowen", "short_name": "Brendan", "number": "77", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership" },
+    { "slug": "dan", "name": "Dan Cardenas", "short_name": "Dan", "number": "12", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
+    { "slug": "stefan", "name": "Stefan Cotton", "short_name": "Stefan", "number": "76", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
+    { "slug": "troy", "name": "Troy Guffey", "short_name": "Troy", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
+    { "slug": "logan", "name": "Logan", "short_name": "Logan", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
+    { "slug": "red", "name": "Red", "short_name": "Red", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
+    { "slug": "jordan", "name": "Jordan", "short_name": "Jordan", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
+    { "slug": "gary", "name": "Gary", "short_name": "Gary", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
+    { "slug": "tim", "name": "Tim", "short_name": "Tim", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" }
+  ],
+  "season_rosters": [
+    { "season_id": "2026-spring", "player_slug": "brendan", "number": "77", "positions": [], "confidence": "confirmed" },
+    { "season_id": "2026-spring", "player_slug": "dan", "number": "12", "positions": [], "confidence": "confirmed" },
+    { "season_id": "2026-spring", "player_slug": "stefan", "number": "76", "positions": [], "confidence": "confirmed" },
+    { "season_id": "2026-spring", "player_slug": "troy", "number": null, "positions": [], "confidence": "confirmed" },
+    { "season_id": "2026-spring", "player_slug": "logan", "number": null, "positions": [], "confidence": "partial" },
+    { "season_id": "2026-spring", "player_slug": "red", "number": null, "positions": [], "confidence": "partial" },
+    { "season_id": "2026-spring", "player_slug": "jordan", "number": null, "positions": [], "confidence": "partial" },
+    { "season_id": "2026-spring", "player_slug": "gary", "number": null, "positions": [], "confidence": "partial" },
+    { "season_id": "2026-spring", "player_slug": "tim", "number": null, "positions": [], "confidence": "partial" }
+  ],
+  "roster_notes": {
+    "2026-spring": "Partial roster: 9 of the 11 players in the Spring 2026 stat export are identified so far."
+  }
+}

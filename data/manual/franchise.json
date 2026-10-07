@@ -1,0 +1,35 @@
+{
+  "franchise": {
+    "id": "sacrifice-blunt",
+    "current_name": "Sacrifice Blunt",
+    "original_name": "COTC",
+    "earliest_verified_season_id": "2019-fall",
+    "home_complex": "Bridgeton Municipal Athletic Complex (BMAC), Bridgeton, MO",
+    "coach_listed_on_teamsideline": "Bowen",
+    "notes": "COTC and Sacrifice Blunt are one continuous franchise. The rename falls between Fall 2021 (last supplied season as COTC) and Fall 2022 (first supplied season as Sacrifice Blunt); the exact session has not been verified."
+  },
+  "eras": [
+    {
+      "id": "cotc",
+      "name": "COTC",
+      "display_name": "COTC Era",
+      "first_season_id": "2019-fall",
+      "last_season_id": "2021-fall",
+      "start_note": "Earliest verified record is Fall 2019.",
+      "end_note": "Last supplied season under the COTC name is Fall 2021. The exact rename date is not verified.",
+      "logo_treatment": "text",
+      "notes": "Original team name. Records roll into franchise totals."
+    },
+    {
+      "id": "sacrifice-blunt",
+      "name": "Sacrifice Blunt",
+      "display_name": "Sacrifice Blunt Era",
+      "first_season_id": "2022-fall",
+      "last_season_id": null,
+      "start_note": "First supplied season under the Sacrifice Blunt name is Fall 2022.",
+      "end_note": null,
+      "logo_treatment": "wordmark-light",
+      "notes": "Current name."
+    }
+  ]
+}

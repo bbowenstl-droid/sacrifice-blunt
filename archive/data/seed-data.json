@@ -1,0 +1,379 @@
+{
+  "franchise": {
+    "current_name": "Sacrifice Blunt",
+    "original_name": "COTC",
+    "franchise_continuity": true,
+    "earliest_verified_season": "2019 Fall",
+    "coach_name_on_team_sideline": "Bowen",
+    "championship_count_currently_supported": 5,
+    "note": "COTC and Sacrifice Blunt are the same franchise. Fall 2021 is a newly recovered TeamSideline-verified COTC championship and should count in all-time franchise totals."
+  },
+  "championships": [
+    {
+      "season_id": "2021-fall",
+      "title": "Fall 2021 Champion",
+      "team_name": "COTC",
+      "confidence": "verified"
+    },
+    {
+      "season_id": "2023-spring",
+      "title": "Spring 2023 Champion",
+      "team_name": "Sacrifice Blunt",
+      "confidence": "verified"
+    },
+    {
+      "season_id": "2023-summer",
+      "title": "Summer 2023 Champion",
+      "team_name": "Sacrifice Blunt",
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "title": "Fall 2025 Champion",
+      "team_name": "Sacrifice Blunt",
+      "confidence": "verified"
+    },
+    {
+      "season_id": "2026-spring",
+      "title": "Spring 2026 Champion",
+      "team_name": "Sacrifice Blunt",
+      "confidence": "mixed_verified_and_confirmed",
+      "undefeated": true
+    }
+  ],
+  "seasons": [
+    {
+      "id": "2019-fall",
+      "year": 2019,
+      "session": "Fall",
+      "team_name": "COTC",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3",
+      "regular_wins": 1,
+      "regular_losses": 7,
+      "regular_ties": 0,
+      "regular_place": 5,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified",
+      "source": "COTC 2019 Fall.pdf"
+    },
+    {
+      "id": "2021-spring",
+      "year": 2021,
+      "session": "Spring",
+      "team_name": "COTC",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3 \"B\"",
+      "regular_wins": 3,
+      "regular_losses": 9,
+      "regular_ties": 0,
+      "regular_place": 4,
+      "playoff_finish": "Lost in playoff Round 2",
+      "champion": false,
+      "confidence": "verified",
+      "source": "COTC 2021 Spring.pdf"
+    },
+    {
+      "id": "2021-summer",
+      "year": 2021,
+      "session": "Summer",
+      "team_name": "COTC",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3 \"B\"",
+      "regular_wins": 7,
+      "regular_losses": 3,
+      "regular_ties": 0,
+      "regular_place": 3,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "COTC 2021 Summer.pdf"
+    },
+    {
+      "id": "2021-fall",
+      "year": 2021,
+      "session": "Fall",
+      "team_name": "COTC",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3 \"C\"",
+      "regular_wins": 6,
+      "regular_losses": 2,
+      "regular_ties": 0,
+      "regular_place": 2,
+      "playoff_finish": "Champion",
+      "champion": true,
+      "confidence": "verified",
+      "championship_note": "TeamSideline playoff results show COTC defeated Goon Squad, then beat The Flying Dutchman 19-9 in the championship.",
+      "source": "COTC 2021 Fall.pdf"
+    },
+    {
+      "id": "2022-fall",
+      "year": 2022,
+      "session": "Fall",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3B",
+      "regular_wins": 6,
+      "regular_losses": 2,
+      "regular_ties": 0,
+      "regular_place": 2,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "Sacrifice Blunt 2022 Fall.pdf"
+    },
+    {
+      "id": "2023-spring",
+      "year": 2023,
+      "session": "Spring",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3 \"B\"",
+      "regular_wins": 9,
+      "regular_losses": 3,
+      "regular_ties": 0,
+      "regular_place": 2,
+      "playoff_finish": "Champion",
+      "champion": true,
+      "confidence": "verified",
+      "postseason_known_results": [
+        {
+          "opponent": "Goon Squad",
+          "result": "W",
+          "team_score": 18,
+          "opponent_score": 8
+        },
+        {
+          "opponent": "Screaming Pelicans",
+          "result": "W",
+          "team_score": 12,
+          "opponent_score": 10
+        }
+      ],
+      "source": "Sacrifice Blunt 2023 Spring.pdf"
+    },
+    {
+      "id": "2023-summer",
+      "year": 2023,
+      "session": "Summer",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3B",
+      "regular_wins": 9,
+      "regular_losses": 3,
+      "regular_ties": 0,
+      "regular_place": 1,
+      "playoff_finish": "Champion",
+      "champion": true,
+      "confidence": "confirmed_by_team_leadership",
+      "source": "Sacrifice Blunt 2023 Summer.pdf + user confirmation"
+    },
+    {
+      "id": "2023-fall",
+      "year": 2023,
+      "session": "Fall",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Thursday Men's D3A",
+      "regular_wins": 4,
+      "regular_losses": 4,
+      "regular_ties": 0,
+      "regular_place": 3,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "Sacrifice Blunt 2023 Fall.pdf"
+    },
+    {
+      "id": "2024-spring",
+      "year": 2024,
+      "session": "Spring",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Tuesday Men's D3",
+      "regular_wins": 6,
+      "regular_losses": 4,
+      "regular_ties": 0,
+      "regular_place": 3,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "Sacrifice Blunt 2024 Spring.pdf"
+    },
+    {
+      "id": "2025-spring",
+      "year": 2025,
+      "session": "Spring",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Wednesday Men's D3",
+      "regular_wins": 6,
+      "regular_losses": 4,
+      "regular_ties": 0,
+      "regular_place": 2,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "Sacrifice Blunt 2025 Spring.pdf"
+    },
+    {
+      "id": "2025-summer",
+      "year": 2025,
+      "session": "Summer",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Wednesday Men's D3A",
+      "regular_wins": 1,
+      "regular_losses": 11,
+      "regular_ties": 0,
+      "regular_place": 6,
+      "playoff_finish": "Lost to The Hard Hats 19-6 in postseason",
+      "champion": false,
+      "confidence": "verified",
+      "source": "Sacrifice Blunt 2025 Summer.pdf"
+    },
+    {
+      "id": "2025-fall",
+      "year": 2025,
+      "session": "Fall",
+      "team_name": "Sacrifice Blunt",
+      "league": "Bridgeton Parks & Recreation / BMAC",
+      "division": "Wednesday Men's Division 3B",
+      "regular_wins": 5,
+      "regular_losses": 3,
+      "regular_ties": 0,
+      "regular_place": 3,
+      "playoff_finish": "Champion",
+      "champion": true,
+      "confidence": "verified",
+      "championship_note": "Verified by physical championship plaque; TeamSideline verifies the 5-3 regular season.",
+      "source": "Sacrifice Blunt 2025 Fall.pdf + fall-2025-championship-plaque.jpeg"
+    },
+    {
+      "id": "2026-spring",
+      "year": 2026,
+      "session": "Spring",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Wednesday Men's D3",
+      "regular_wins": 12,
+      "regular_losses": 0,
+      "regular_ties": 0,
+      "regular_place": 1,
+      "overall_wins": 14,
+      "overall_losses": 0,
+      "playoff_finish": "Champion",
+      "champion": true,
+      "undefeated": true,
+      "confidence": "mixed_verified_and_confirmed",
+      "championship_note": "TeamSideline verifies 12-0 regular season. Team leadership confirms undefeated championship and 14-0 overall record.",
+      "source": "Sacrifice Blunt 2026 Spring.pdf + user confirmation"
+    },
+    {
+      "id": "2026-summer",
+      "year": 2026,
+      "session": "Summer/Fall",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Wednesday Men's D3",
+      "regular_wins": 6,
+      "regular_losses": 6,
+      "regular_ties": 0,
+      "regular_place": 4,
+      "playoff_finish": null,
+      "champion": false,
+      "confidence": "verified_regular_season_only",
+      "source": "Sacrifice Blunt 2026 Summer.pdf"
+    },
+    {
+      "id": "2026-fall",
+      "year": 2026,
+      "session": "Fall",
+      "team_name": "Sacrifice Blunt",
+      "league": "BMAC / Bridgeton Municipal Athletic Complex",
+      "division": "Wednesday Men's D3",
+      "regular_wins": 1,
+      "regular_losses": 7,
+      "regular_ties": 0,
+      "regular_place": 5,
+      "playoff_finish": "Playoffs scheduled 2026-10-07",
+      "champion": false,
+      "confidence": "verified",
+      "source": "Sacrifice Blunt 2026 Fall.pdf"
+    }
+  ],
+  "current_known_games": {
+    "2026-fall": [
+      {
+        "date": "2026-09-09",
+        "opponent": "Cheers",
+        "result": "L",
+        "team_score": 5,
+        "opponent_score": 6
+      },
+      {
+        "date": "2026-09-09",
+        "opponent": "Cheers",
+        "result": "L",
+        "team_score": 2,
+        "opponent_score": 15
+      },
+      {
+        "date": "2026-09-16",
+        "opponent": "Minimal Effort",
+        "result": "L",
+        "team_score": 12,
+        "opponent_score": 16
+      },
+      {
+        "date": "2026-09-16",
+        "opponent": "Minimal Effort",
+        "result": "L",
+        "team_score": 3,
+        "opponent_score": 16
+      },
+      {
+        "date": "2026-09-23",
+        "opponent": "The Hard Hats",
+        "result": "L",
+        "team_score": 13,
+        "opponent_score": 15
+      },
+      {
+        "date": "2026-09-23",
+        "opponent": "The Hard Hats",
+        "result": "L",
+        "team_score": 22,
+        "opponent_score": 26
+      },
+      {
+        "date": "2026-09-30",
+        "opponent": "The Down Bad Boys",
+        "result": "W",
+        "team_score": 8,
+        "opponent_score": 7
+      },
+      {
+        "date": "2026-09-30",
+        "opponent": "The Down Bad Boys",
+        "result": "L",
+        "team_score": 11,
+        "opponent_score": 17
+      }
+    ]
+  },
+  "data_rules": {
+    "confidence_levels": [
+      "verified",
+      "confirmed",
+      "partial",
+      "unknown",
+      "verified_regular_season_only",
+      "mixed_verified_and_confirmed"
+    ],
+    "never_invent_missing_data": true,
+    "store_regular_and_postseason_records_separately": true,
+    "roll_cotc_into_franchise_totals": true
+  }
+}

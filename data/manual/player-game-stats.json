@@ -1,0 +1,1 @@
+{ "_doc": "Aggregate per-game batting lines for games without plate-appearance detail (e.g. imported from a stat app). Fields: game_id, player_slug, pa, ab, r, h, 1b, 2b, 3b, hr, rbi, bb, k, sac, roe. Omit a field if it was not captured — never enter 0 for an unknown.", "player_game_stats": [] }

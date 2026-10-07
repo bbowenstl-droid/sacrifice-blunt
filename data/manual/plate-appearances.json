@@ -1,0 +1,1 @@
+{ "_doc": "Plate appearances recorded by the scorekeeper (admin → Scorekeeper → Export). Each row: game_id, player_slug, pa_index, inning, result (1B|2B|3B|HR|BB|K|OUT|SAC|ROE|FC|HBP), rbi, run_scored, notes.", "plate_appearances": [] }

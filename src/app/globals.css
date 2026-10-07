@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/source-serif-4/index.css";
+
+/* ------------------------------------------------------------------
+   Sacrifice Blunt design tokens
+   Night foundation, navy structure, cardinal accent, gold for titles.
+   Green (from the mascot mask) is reserved for "live / today" signals.
+------------------------------------------------------------------- */
+@theme {
+  --color-night: #07090e;
+  --color-pitch: #0c1220;        /* raised surface */
+  --color-navy: #13213b;         /* structural navy */
+  --color-navy-2: #1b2c4b;
+  --color-line: #222f47;
+  --color-line-soft: #18233a;
+  --color-chalk: #f3f1ea;
+  --color-mute: #93a0b6;
+  --color-dim: #5f6b82;
+  --color-cardinal: #c8102e;
+  --color-cardinal-hi: #ec3a52;
+  --color-gold: #d8a93a;
+  --color-gold-hi: #f2cf73;
+  --color-gold-deep: #6f5414;
+  --color-mask: #3fa45b;
+
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+
+  --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@layer base {
+  html { color-scheme: dark; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--color-night);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    font-variation-settings: "wdth" 100;
+    font-feature-settings: "ss01" on;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--color-cardinal); color: white; }
+  :focus-visible { outline: 2px solid var(--color-gold-hi); outline-offset: 2px; border-radius: 2px; }
+  a { text-decoration: none; color: inherit; }
+}
+
+/* Type system ------------------------------------------------------- */
+@utility display {
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 125;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+@utility condensed {
+  font-variation-settings: "wdth" 72;
+}
+@utility wide {
+  font-variation-settings: "wdth" 118;
+}
+@utility num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+@utility serif {
+  font-family: var(--font-serif);
+  font-variation-settings: normal;
+}
+
+/* Small label used for section kickers: sentence case, quiet */
+@utility kicker {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-mute);
+  font-variation-settings: "wdth" 100;
+}
+
+/* Panels: hierarchy is carried by surface tone and a hairline, not shadows */
+@utility panel {
+  background: var(--color-pitch);
+  border: 1px solid var(--color-line-soft);
+  border-radius: 6px;
+}
+
+/* Data tables */
+@utility stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  & th {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-mute);
+    text-align: right;
+    padding: 0.5rem 0.625rem;
+    border-bottom: 1px solid var(--color-line);
+    white-space: nowrap;
+    font-variation-settings: "wdth" 85;
+    letter-spacing: 0.02em;
+  }
+  & td {
+    padding: 0.55rem 0.625rem;
+    text-align: right;
+    border-bottom: 1px solid var(--color-line-soft);
+    white-space: nowrap;
+  }
+  & th:first-child, & td:first-child { text-align: left; }
+  & tbody tr:hover { background: rgb(255 255 255 / 0.025); }
+}
+
+/* Horizontal scroller for wide tables on phones, with a fade hint */
+@utility scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+/* One orchestrated moment: the championship banners drop in on first paint */
+@keyframes banner-drop {
+  from { transform: translateY(-18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.banner-drop { animation: banner-drop 520ms var(--ease-snap) both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-drop, .live-dot { animation: none !important; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* Subtle diamond-stitch texture for hero surfaces */
+.stitch {
+  background-image:
+    linear-gradient(135deg, rgb(255 255 255 / 0.018) 25%, transparent 25%),
+    linear-gradient(225deg, rgb(255 255 255 / 0.018) 25%, transparent 25%);
+  background-size: 28px 28px;
+}
+
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+}
+
+/* Grid/flex children may shrink below their content width (keeps wide tables inside their scroller) */
+@layer base {
+  .grid > *, .flex > * { min-width: 0; }
+}

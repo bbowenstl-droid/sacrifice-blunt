@@ -1,0 +1,32 @@
+{
+  "name": "sacrifice-blunt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sacrifice Blunt (originally COTC) — franchise history, stats archive and record book",
+  "scripts": {
+    "ingest": "python3 -I scripts/ingest_teamsideline.py archive/sources data/generated/teamsideline.json",
+    "build:data": "node scripts/build-dataset.mjs",
+    "build:sql": "node scripts/export-sql-seed.mjs",
+    "dev": "npm run build:data && next dev",
+    "build": "npm run build:data && next build",
+    "start": "next start",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "5.3.0",
+    "@fontsource-variable/source-serif-4": "5.3.0",
+    "next": "15.5.27",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.14",
+    "@types/node": "22.18.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
+    "tailwindcss": "4.1.14",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}

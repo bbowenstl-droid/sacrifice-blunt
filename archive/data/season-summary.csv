@@ -1,0 +1,16 @@
+season_id,team_name,year,session,division,regular_record,regular_place,champion,playoff_finish,confidence,source
+2019-fall,COTC,2019,Fall,Thursday Men's D3,1-7-0,5,False,,verified,COTC 2019 Fall.pdf
+2021-spring,COTC,2021,Spring,"Thursday Men's D3 ""B""",3-9-0,4,False,Lost in playoff Round 2,verified,COTC 2021 Spring.pdf
+2021-summer,COTC,2021,Summer,"Thursday Men's D3 ""B""",7-3-0,3,False,,verified_regular_season_only,COTC 2021 Summer.pdf
+2021-fall,COTC,2021,Fall,"Thursday Men's D3 ""C""",6-2-0,2,True,Champion,verified,COTC 2021 Fall.pdf
+2022-fall,Sacrifice Blunt,2022,Fall,Thursday Men's D3B,6-2-0,2,False,,verified_regular_season_only,Sacrifice Blunt 2022 Fall.pdf
+2023-spring,Sacrifice Blunt,2023,Spring,"Thursday Men's D3 ""B""",9-3-0,2,True,Champion,verified,Sacrifice Blunt 2023 Spring.pdf
+2023-summer,Sacrifice Blunt,2023,Summer,Thursday Men's D3B,9-3-0,1,True,Champion,confirmed_by_team_leadership,Sacrifice Blunt 2023 Summer.pdf + user confirmation
+2023-fall,Sacrifice Blunt,2023,Fall,Thursday Men's D3A,4-4-0,3,False,,verified_regular_season_only,Sacrifice Blunt 2023 Fall.pdf
+2024-spring,Sacrifice Blunt,2024,Spring,Tuesday Men's D3,6-4-0,3,False,,verified_regular_season_only,Sacrifice Blunt 2024 Spring.pdf
+2025-spring,Sacrifice Blunt,2025,Spring,Wednesday Men's D3,6-4-0,2,False,,verified_regular_season_only,Sacrifice Blunt 2025 Spring.pdf
+2025-summer,Sacrifice Blunt,2025,Summer,Wednesday Men's D3A,1-11-0,6,False,Lost to The Hard Hats 19-6 in postseason,verified,Sacrifice Blunt 2025 Summer.pdf
+2025-fall,Sacrifice Blunt,2025,Fall,Wednesday Men's Division 3B,5-3-0,3,True,Champion,verified,Sacrifice Blunt 2025 Fall.pdf + fall-2025-championship-plaque.jpeg
+2026-spring,Sacrifice Blunt,2026,Spring,Wednesday Men's D3,12-0-0,1,True,Champion,mixed_verified_and_confirmed,Sacrifice Blunt 2026 Spring.pdf + user confirmation
+2026-summer,Sacrifice Blunt,2026,Summer/Fall,Wednesday Men's D3,6-6-0,4,False,,verified_regular_season_only,Sacrifice Blunt 2026 Summer.pdf
+2026-fall,Sacrifice Blunt,2026,Fall,Wednesday Men's D3,1-7-0,5,False,Playoffs scheduled 2026-10-07,verified,Sacrifice Blunt 2026 Fall.pdf

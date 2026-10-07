@@ -1,0 +1,52 @@
+{
+  "_doc": "Hand-reviewed notes layered on top of seed-data.json and the TeamSideline ingest. Postseason finishes are derived from parsed games; these entries add context, review flags, and confidence for the postseason only. Regular-season confidence always comes from the seed.",
+  "seasons": {
+    "2019-fall": {
+      "postseason_confidence": "partial",
+      "postseason_note": "TeamSideline lists a Round 1 game at MSGA on Oct 17, 2019, but no result was posted."
+    },
+    "2021-spring": { "postseason_confidence": "verified" },
+    "2021-summer": {
+      "postseason_confidence": "verified",
+      "postseason_note": "Postseason result read from the TeamSideline playoff schedule (Round 2, Sep 9, 2021). The seed listed this season as regular-season-only.",
+      "review": "Postseason finish added from the PDF — seed had none."
+    },
+    "2021-fall": { "postseason_confidence": "verified" },
+    "2022-fall": {
+      "postseason_confidence": "verified",
+      "review": "Postseason finish (runner-up, lost title game 13-12 to Thunder) added from the PDF — seed had none."
+    },
+    "2023-spring": { "postseason_confidence": "verified" },
+    "2023-summer": {
+      "postseason_confidence": "verified",
+      "postseason_note": "Title confirmed by team leadership. The TeamSideline playoff schedule also shows both postseason wins, including the 14-4 championship-round game.",
+      "review": "Championship originally 'confirmed by team leadership'; the supplied PDF also contains the title-game score."
+    },
+    "2023-fall": { "postseason_confidence": "verified" },
+    "2024-spring": {
+      "postseason_confidence": "verified",
+      "review": "Postseason finish (runner-up, lost title game 13-8 to Fellas) added from the PDF — seed had none."
+    },
+    "2025-spring": {
+      "postseason_confidence": "verified",
+      "title_under_review": true,
+      "postseason_note": "TeamSideline shows Sacrifice Blunt winning the Playoff Round 3 – Championship Round game (G7) 13-12 over Cheers. Three division teams (Local 268, Misfits, Wrecking Crew) are not in this bracket, so it may have been a split-tier bracket. Not counted as a franchise title until team leadership confirms.",
+      "review": "Possible 6th championship. Needs owner decision before it counts."
+    },
+    "2025-summer": { "postseason_confidence": "verified" },
+    "2025-fall": { "postseason_confidence": "verified" },
+    "2026-spring": {
+      "postseason_confidence": "verified",
+      "postseason_note": "TeamSideline verifies the 12-0 regular season. Team leadership confirms the undefeated championship and 14-0 overall record; the TeamSideline playoff schedule also shows both postseason wins (11-4, 10-2).",
+      "review": "Season confidence kept as mixed (verified + confirmed) per the handoff, though the PDF corroborates 14-0."
+    },
+    "2026-summer": {
+      "postseason_confidence": "verified",
+      "regular_season_note": "Both July 1 games vs Minimal Effort are recorded by TeamSideline as wins without a score (result only)."
+    },
+    "2026-fall": {
+      "postseason_confidence": "partial",
+      "postseason_note": "Playoffs are scheduled for Wednesday, Oct 7, 2026. No playoff results are in the supplied PDF."
+    }
+  }
+}
