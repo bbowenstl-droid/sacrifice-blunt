@@ -220,7 +220,7 @@
       "bio": null,
       "confidence": "confirmed",
       "source": "GameChanger / season stat exports",
-      "sub": false
+      "sub": true
     },
     {
       "slug": "joel",
