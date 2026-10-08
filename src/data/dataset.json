@@ -1,6 +1,6 @@
 {
  "meta": {
-  "built_at": "2026-10-08T16:21:38.324Z",
+  "built_at": "2026-10-08T18:14:23.765Z",
   "data_as_of": "2026-10-08",
   "sources": [
    "archive/data/seed-data.json",
@@ -19368,7 +19368,7 @@
    "bio": null,
    "confidence": "confirmed",
    "source": "GameChanger / season stat exports",
-   "sub": false
+   "sub": true
   },
   {
    "slug": "joel",
