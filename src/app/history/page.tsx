@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { asset } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
 import { getSeasons, getGaps, getEras, getGames, opponentName, franchiseTotals, getFranchise } from "@/lib/data";
@@ -64,7 +65,7 @@ export default function HistoryPage() {
               <div key={e.id} className={`panel p-5 ${e.id === "sacrifice-blunt" ? "border-cardinal/40" : ""}`}>
                 <div className="flex items-center justify-between">
                   <div className="wide text-[1.2rem] font-black">{e.display_name}</div>
-                  {e.id === "sacrifice-blunt" && <Image src="/brand/badge-64.png" alt="" width={32} height={32} />}
+                  {e.id === "sacrifice-blunt" && <Image src={asset("/brand/badge-64.png")} alt="" width={32} height={32} />}
                 </div>
                 <p className="mt-1 text-[0.85rem] text-mute">{e.start_note} {e.end_note}</p>
                 <div className="mt-4 grid grid-cols-3 gap-3 text-[0.8rem]">

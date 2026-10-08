@@ -1,15 +1,15 @@
 import Link from "next/link";
 import type { Season } from "@/lib/types";
-import { getSeasons, getGames, getStandings, getLeagueGames, liveStatus } from "@/lib/data";
+import { getSeasons, getGames, getStandings, getLeagueGames, pendingGames } from "@/lib/data";
 import { rec, ordinal } from "@/lib/format";
 import { Container, SectionTitle, Tag } from "./ui";
 import { GameList, StandingsTable, Bracket } from "./games";
 import { SeasonPicker } from "./SeasonPicker";
 
 export function SchedulePage({ season }: { season: Season }) {
-  const now = new Date();
   const games = getGames({ seasonId: season.id });
-  const upcoming = games.filter((g) => ["scheduled", "in_progress", "awaiting"].includes(liveStatus(g, now)));
+  const pendingIds = new Set(pendingGames().map((g) => g.id));
+  const upcoming = games.filter((g) => pendingIds.has(g.id));
   const done = games.filter((g) => !upcoming.includes(g));
   const isCurrent = getSeasons()[0].id === season.id;
   return (
@@ -38,12 +38,12 @@ export function SchedulePage({ season }: { season: Season }) {
           {upcoming.length > 0 && (
             <section>
               <SectionTitle note="Times are Central. Fields at BMAC.">Upcoming</SectionTitle>
-              <GameList games={upcoming} now={now} />
+              <GameList games={upcoming} />
             </section>
           )}
           <section>
             <SectionTitle>Results</SectionTitle>
-            <GameList games={[...done].reverse()} now={now} empty="No results yet." />
+            <GameList games={[...done].reverse()} empty="No results yet." />
           </section>
         </div>
         <div className="space-y-10">

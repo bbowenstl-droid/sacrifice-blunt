@@ -38,10 +38,10 @@
     "2025-spring": {
       "postseason_confidence": "verified",
       "champion_confirmed_by_leadership": true,
-      "decision_date": "2026-10-07",
-      "championship_note": "TeamSideline shows Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 \u2013 Championship Round game (G7). Team leadership confirmed on Oct 7, 2026 that this was a championship.",
-      "postseason_note": "Won the championship bracket 3-0, including a 13-12 title game over Cheers. Counted as a franchise title per team leadership (Oct 7, 2026).",
-      "review": "Resolved Oct 7, 2026: team leadership confirmed Spring 2025 as a championship (6th title)."
+      "championship_note": "TeamSideline playoff results show Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 \u2013 Championship Round game (G7). Counted as a championship: verified by team leadership, with the TeamSideline results as the documentary source.",
+      "postseason_note": "Won the championship bracket 3-0, including a 13-12 title game over Cheers (TeamSideline playoff results). Verified as a franchise title by team leadership.",
+      "review": "Spring 2025 counted as a championship (6th title): verified by team leadership; TeamSideline playoff results are the documentary source.",
+      "season_confidence": "verified"
     },
     "2025-summer": {
       "postseason_confidence": "verified"

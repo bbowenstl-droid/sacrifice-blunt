@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { asset } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -84,7 +85,7 @@ export default async function ChampionshipPage({ params }: { params: Promise<{ s
             <SectionTitle>Proof</SectionTitle>
             {c.evidence_image && (
               <figure className="mb-4">
-                <Image src={c.evidence_image} alt="2025 Bridgeton Fall Softball, Wednesday Men's Division 3B Champions plaque, Sacrifice Blunt" width={1152} height={1536} className="h-auto w-full max-w-sm rounded-md ring-1 ring-gold/40" />
+                <Image src={asset(c.evidence_image)} alt="2025 Bridgeton Fall Softball, Wednesday Men's Division 3B Champions plaque, Sacrifice Blunt" width={1152} height={1536} className="h-auto w-full max-w-sm rounded-md ring-1 ring-gold/40" />
                 <figcaption className="mt-2 text-[0.8rem] text-mute">Championship plaque: 2025 Bridgeton Fall Softball, Wednesday Men&apos;s Division 3B, Champions — Sacrifice Blunt.</figcaption>
               </figure>
             )}

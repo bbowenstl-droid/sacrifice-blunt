@@ -1,6 +1,7 @@
-node_modules
-.next
-out
-.env*.local
 *.tsbuildinfo
+.env*.local
+.next
 next-env.d.ts
+node_modules
+out
+public/source-files

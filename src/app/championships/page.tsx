@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { asset } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
 import { getChampionships, getSeasons, getSeason, getGame, opponentName, getGames } from "@/lib/data";
@@ -62,7 +63,7 @@ export default function Vault() {
                   <div className="mt-2 text-[0.88rem] text-mute">{s.team_name_at_time === "COTC" ? <>as <strong className="text-chalk">COTC</strong> · </> : null}{s.division}</div>
                 </div>
                 {t.evidence_image && (
-                  <Image src={t.evidence_image} alt="Fall 2025 championship plaque" width={96} height={128} className="h-[128px] w-[96px] rounded object-cover ring-1 ring-gold/40" />
+                  <Image src={asset(t.evidence_image)} alt="Fall 2025 championship plaque" width={96} height={128} className="h-[128px] w-[96px] rounded object-cover ring-1 ring-gold/40" />
                 )}
               </div>
               <div className="mt-5 grid grid-cols-3 gap-3 border-t border-line-soft pt-4 text-[0.82rem]">

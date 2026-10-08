@@ -43,7 +43,7 @@ const evidence = sourceIndex.map((s) => ({
   kind: s.type.includes("plaque") ? "physical_plaque" : "teamsideline_export",
   title: s.file,
   file: s.file.endsWith(".pdf") ? `archive/sources/${s.file}` : `archive/assets/evidence/${s.file}`,
-  public_url: s.file.endsWith(".pdf") ? null : "/evidence/fall-2025-championship-plaque.jpg",
+  public_url: s.file.endsWith(".pdf") ? `/source-files/${encodeURIComponent(s.file)}` : "/evidence/fall-2025-championship-plaque.jpg",
   coverage: s.coverage,
   confidence: "verified",
 }));
@@ -52,7 +52,7 @@ evidence.push({
   kind: "leadership_confirmation",
   title: "Team leadership confirmation",
   file: null, public_url: null,
-  coverage: "Summer 2023 title; Spring 2025 title (confirmed Oct 7, 2026); Spring 2026 undefeated title and 14-0 overall record; player names",
+  coverage: "Summer 2023 title; Spring 2025 title; Spring 2026 undefeated title and 14-0 overall record; player names",
   confidence: "confirmed",
 });
 const evidenceIdForFile = (f) => slugify(f.replace(/\.pdf$/i, ""));
@@ -109,7 +109,7 @@ for (const s of seed.seasons) {
     s.champion = true;
     s.playoff_finish = "Champion";
     s.championship_note = ann.championship_note ?? s.championship_note;
-    s.source = `${s.source} + team leadership confirmation (${ann.decision_date})`;
+    s.source = `${s.source} + team leadership confirmation`;
     s.leadership_added_title = true;
   }
   const eraId = s.team_name === "COTC" ? "cotc" : "sacrifice-blunt";
@@ -229,7 +229,7 @@ for (const s of seed.seasons) {
     champion: !!s.champion,
     title_under_review: !!ann.title_under_review,
     undefeated: !!s.undefeated,
-    confidence: confidenceNorm(s.confidence),
+    confidence: ann.season_confidence ?? confidenceNorm(s.confidence),
     // every supplied season's printed standings were re-derived game-by-game from its PDF
     regular_confidence: us ? "verified" : confidenceNorm(s.confidence),
     postseason_confidence: ann.postseason_confidence ?? (post.length ? "verified" : "unknown"),
@@ -350,6 +350,10 @@ const out = {
   review_queue: reviewQueue,
 };
 fs.mkdirSync(path.join(root, "src/data"), { recursive: true });
+// Publish the original TeamSideline PDFs next to the site so every source link works.
+const pdfOut = path.join(root, "public/source-files");
+fs.mkdirSync(pdfOut, { recursive: true });
+for (const f of fs.readdirSync(path.join(root, "archive/sources"))) if (f.endsWith(".pdf")) fs.copyFileSync(path.join(root, "archive/sources", f), path.join(pdfOut, f));
 fs.writeFileSync(path.join(root, "src/data/dataset.json"), JSON.stringify(out, null, 1));
 console.log(`dataset: ${seasons.length} seasons, ${games.length} franchise games, ${leagueGames.length} league games, ${opponents.size} opponents, ${championships.length} championships, ${reviewQueue.length} review items`);
 

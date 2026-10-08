@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   getAllGames, getGame, getSeason, opponentName, getOpponent, sameNightGames, gameNeighbors, headToHead,
-  getPlateAppearances, getPlayer, liveStatus,
+  getPlateAppearances, getPlayer, pendingGames,
 } from "@/lib/data";
 import { lineFromPAs, finalize, fmtRate } from "@/lib/stats";
 import { fmtLongDate, fmtDate, rec } from "@/lib/format";
@@ -11,7 +11,6 @@ import { Container, Breadcrumb, SectionTitle, Tag, Empty, ConfidenceBadge } from
 import { StatusText } from "@/components/games";
 import { SourceList } from "@/components/SourceList";
 
-export const revalidate = 60;
 export const dynamicParams = false;
 export const generateStaticParams = () => getAllGames().map((g) => ({ slug: g.slug }));
 
@@ -33,7 +32,7 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
   const h2h = headToHead(opp.id);
   const pas = getPlateAppearances().filter((p) => p.game_id === g.id);
   const batters = [...new Set(pas.sort((a, b) => a.pa_index - b.pa_index).map((p) => p.player_slug))];
-  const status = liveStatus(g);
+  const notPlayedYet = pendingGames().some((x) => x.id === g.id);
   const us = { name: g.team_name_at_time, score: g.team_score, won: g.result === "W" };
   const them = { name: opp.canonical_name, score: g.opponent_score, won: g.result === "L" };
   const [away, home] = g.home_away === "home" ? [them, us] : [us, them];
@@ -95,9 +94,9 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
                 </table>
               </div>
             ) : (
-              <Empty title={status === "scheduled" ? "Not played yet" : "No box score recorded for this game"}>
-                {status === "scheduled"
-                  ? "The lineup and box score appear here once the scorekeeper starts the game."
+              <Empty title={notPlayedYet ? "No box score yet" : "No box score recorded for this game"}>
+                {notPlayedYet
+                  ? "The lineup and box score appear here once the game is scored and the site is updated."
                   : "Historical games have final scores from TeamSideline but no batting detail. Lineups and batting lines appear here when they are entered."}
               </Empty>
             )}

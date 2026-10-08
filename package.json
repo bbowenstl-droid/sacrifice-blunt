@@ -2,16 +2,17 @@
   "name": "sacrifice-blunt",
   "version": "1.0.0",
   "private": true,
-  "description": "Sacrifice Blunt (originally COTC) — franchise history, stats archive and record book",
+  "description": "Sacrifice Blunt (originally COTC) \u2014 franchise history, stats archive and record book",
   "scripts": {
     "ingest": "python3 -I scripts/ingest_teamsideline.py archive/sources data/generated/teamsideline.json",
     "build:data": "node scripts/build-dataset.mjs",
     "build:sql": "node scripts/export-sql-seed.mjs",
     "dev": "npm run build:data && next dev",
-    "build": "npm run build:data && next build",
-    "start": "next start",
+    "build": "npm run build:data && next build && node scripts/verify-export.mjs",
+    "build:pages": "PAGES_BASE_PATH=/sacrifice-blunt npm run build",
+    "preview": "node scripts/serve-out.mjs",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "npm run build:data && tsc --noEmit"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "5.3.0",

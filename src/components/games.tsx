@@ -1,17 +1,12 @@
 import Link from "next/link";
 import type { Game, LeagueGame, StandingRow } from "@/lib/types";
-import { getSeason, opponentName, liveStatus, getOpponent, getGames } from "@/lib/data";
+import { getSeason, opponentName, getOpponent, getGames } from "@/lib/data";
+import { LiveStatusText } from "./live";
 import { fmtDate, fmtPct } from "@/lib/format";
 import { ResultChip, Tag } from "./ui";
 
-export function StatusText({ game, now }: { game: Game; now?: Date }) {
-  const st = liveStatus(game, now);
-  if (st === "scheduled") return <span className="text-mask">{game.time}</span>;
-  if (st === "in_progress") return <span className="flex items-center gap-1.5 text-mask"><span className="live-dot h-1.5 w-1.5 rounded-full bg-mask" />Under way</span>;
-  if (st === "awaiting") return <span className="text-mute">Result pending</span>;
-  if (st === "unreported") return <span className="text-dim">No result posted</span>;
-  if (st === "final_result_only") return <span className="text-mute">{game.result === "W" ? "Win" : "Loss"} · no score</span>;
-  return null;
+export function StatusText({ game }: { game: Game; now?: Date }) {
+  return <LiveStatusText game={{ date: game.date, time: game.time, status: game.status, result: game.result }} />;
 }
 
 /** A single game row — scoreboard style. Works from 320px up. */

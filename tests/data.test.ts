@@ -53,6 +53,9 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     const c = getChampionships().find((x) => x.season_id === "2025-spring")!;
     expect(c.title_game_id).toBe("2025-spring-cheers-1");
     expect(c.verification).toEqual(["teamsideline_playoff_results", "team_leadership"]);
+    expect(s.confidence).toBe("verified");
+    // Verified by leadership with TeamSideline as the documentary source; no invented confirmation date.
+    expect(`${s.championship_note} ${s.postseason_note} ${s.source_notes}`).not.toMatch(/Oct(ober)? \d|2026-10-\d\d/);
   });
   it("matches the Fall 2026 standings in the handoff", () => {
     expect(getStandings("2026-fall").map((r) => `${r.team} ${r.w}-${r.l}`)).toEqual([
@@ -95,5 +98,26 @@ describe("stats engine", () => {
       { game_id: "b", player_slug: "troy", ab: 4, h: 1, bb: 1 },
     ]);
     expect(line.h).toBe(3); expect(line.ab).toBe(7); expect(line.hr).toBeNull(); expect(line.slg).toBeNull();
+  });
+});
+
+describe("static site helpers", () => {
+  it("knows when a game is upcoming, under way, or waiting on a result", async () => {
+    const { liveStatus, gameStart } = await import("@/lib/time");
+    const g = { date: "2026-10-07", time: "6:30 PM", status: "unreported", result: null };
+    expect(gameStart(g).toISOString()).toBe("2026-10-07T23:30:00.000Z"); // 6:30 PM CDT
+    expect(liveStatus(g, new Date("2026-10-07T21:00:00Z"))).toBe("scheduled");
+    expect(liveStatus(g, new Date("2026-10-07T23:45:00Z"))).toBe("in_progress");
+    expect(liveStatus(g, new Date("2026-10-08T03:00:00Z"))).toBe("awaiting");
+    expect(gameStart({ date: "2026-01-10", time: "7:30 PM" }).toISOString()).toBe("2026-01-11T01:30:00.000Z"); // CST
+  });
+  it("prefixes public assets with the Pages base path", async () => {
+    process.env.NEXT_PUBLIC_BASE_PATH = "/sacrifice-blunt";
+    const { vi } = await import("vitest");
+    vi.resetModules();
+    const site = await import("@/lib/site");
+    expect(site.asset("/brand/badge-64.png")).toBe("/sacrifice-blunt/brand/badge-64.png");
+    expect(site.SITE_URL).toBe("https://bbowenstl-droid.github.io/sacrifice-blunt");
+    delete process.env.NEXT_PUBLIC_BASE_PATH;
   });
 });

@@ -1,6 +1,6 @@
 {
  "meta": {
-  "built_at": "2026-10-07T21:37:19.540Z",
+  "built_at": "2026-10-08T03:40:48.675Z",
   "data_as_of": "2026-10-07",
   "sources": [
    "archive/data/seed-data.json",
@@ -479,13 +479,13 @@
    "champion": true,
    "title_under_review": false,
    "undefeated": false,
-   "confidence": "verified_regular_season_only",
+   "confidence": "verified",
    "regular_confidence": "verified",
    "postseason_confidence": "verified",
-   "championship_note": "TeamSideline shows Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Team leadership confirmed on Oct 7, 2026 that this was a championship.",
-   "postseason_note": "Won the championship bracket 3-0, including a 13-12 title game over Cheers. Counted as a franchise title per team leadership (Oct 7, 2026).",
+   "championship_note": "TeamSideline playoff results show Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Counted as a championship: verified by team leadership, with the TeamSideline results as the documentary source.",
+   "postseason_note": "Won the championship bracket 3-0, including a 13-12 title game over Cheers (TeamSideline playoff results). Verified as a franchise title by team leadership.",
    "regular_season_note": null,
-   "source_notes": "Sacrifice Blunt 2025 Spring.pdf + team leadership confirmation (2026-10-07)",
+   "source_notes": "Sacrifice Blunt 2025 Spring.pdf + team leadership confirmation",
    "source_evidence_ids": [
     "sacrifice-blunt-2025-spring",
     "team-leadership"
@@ -19144,7 +19144,7 @@
     "2025-spring-cheers-1"
    ],
    "evidence_image": null,
-   "notes": "TeamSideline shows Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Team leadership confirmed on Oct 7, 2026 that this was a championship."
+   "notes": "TeamSideline playoff results show Sacrifice Blunt beating Chester City 13-9 and Outlaws 18-7, then Cheers 13-12 in the Playoff Round 3 – Championship Round game (G7). Counted as a championship: verified by team leadership, with the TeamSideline results as the documentary source."
   }
  ],
  "players": [
@@ -19336,7 +19336,7 @@
    "kind": "teamsideline_export",
    "title": "COTC 2019 Fall.pdf",
    "file": "archive/sources/COTC 2019 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/COTC%202019%20Fall.pdf",
    "coverage": "Fall 2019 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19345,7 +19345,7 @@
    "kind": "teamsideline_export",
    "title": "COTC 2021 Spring.pdf",
    "file": "archive/sources/COTC 2021 Spring.pdf",
-   "public_url": null,
+   "public_url": "/source-files/COTC%202021%20Spring.pdf",
    "coverage": "Spring 2021 regular season + playoff results\r",
    "confidence": "verified"
   },
@@ -19354,7 +19354,7 @@
    "kind": "teamsideline_export",
    "title": "COTC 2021 Summer.pdf",
    "file": "archive/sources/COTC 2021 Summer.pdf",
-   "public_url": null,
+   "public_url": "/source-files/COTC%202021%20Summer.pdf",
    "coverage": "Summer 2021 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19363,7 +19363,7 @@
    "kind": "teamsideline_export",
    "title": "COTC 2021 Fall.pdf",
    "file": "archive/sources/COTC 2021 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/COTC%202021%20Fall.pdf",
    "coverage": "Fall 2021 regular season + verified championship result\r",
    "confidence": "verified"
   },
@@ -19372,7 +19372,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2022 Fall.pdf",
    "file": "archive/sources/Sacrifice Blunt 2022 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202022%20Fall.pdf",
    "coverage": "Fall 2022 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19381,7 +19381,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2023 Spring.pdf",
    "file": "archive/sources/Sacrifice Blunt 2023 Spring.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202023%20Spring.pdf",
    "coverage": "Spring 2023 regular season + playoff championship results\r",
    "confidence": "verified"
   },
@@ -19390,7 +19390,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2023 Summer.pdf",
    "file": "archive/sources/Sacrifice Blunt 2023 Summer.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202023%20Summer.pdf",
    "coverage": "Summer 2023 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19399,7 +19399,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2023 Fall.pdf",
    "file": "archive/sources/Sacrifice Blunt 2023 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202023%20Fall.pdf",
    "coverage": "Fall 2023 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19408,7 +19408,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2024 Spring.pdf",
    "file": "archive/sources/Sacrifice Blunt 2024 Spring.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202024%20Spring.pdf",
    "coverage": "Spring 2024 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19417,7 +19417,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2025 Spring.pdf",
    "file": "archive/sources/Sacrifice Blunt 2025 Spring.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202025%20Spring.pdf",
    "coverage": "Spring 2025 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19426,7 +19426,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2025 Summer.pdf",
    "file": "archive/sources/Sacrifice Blunt 2025 Summer.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202025%20Summer.pdf",
    "coverage": "Summer 2025 regular season + playoff result\r",
    "confidence": "verified"
   },
@@ -19435,7 +19435,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2025 Fall.pdf",
    "file": "archive/sources/Sacrifice Blunt 2025 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202025%20Fall.pdf",
    "coverage": "Fall 2025 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19444,7 +19444,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2026 Spring.pdf",
    "file": "archive/sources/Sacrifice Blunt 2026 Spring.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202026%20Spring.pdf",
    "coverage": "Spring 2026 12-0 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19453,7 +19453,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2026 Summer.pdf",
    "file": "archive/sources/Sacrifice Blunt 2026 Summer.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202026%20Summer.pdf",
    "coverage": "2026 Summer/Fall regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19462,7 +19462,7 @@
    "kind": "teamsideline_export",
    "title": "Sacrifice Blunt 2026 Fall.pdf",
    "file": "archive/sources/Sacrifice Blunt 2026 Fall.pdf",
-   "public_url": null,
+   "public_url": "/source-files/Sacrifice%20Blunt%202026%20Fall.pdf",
    "coverage": "Fall 2026 regular season + playoff bracket\r",
    "confidence": "verified"
   },
@@ -19481,7 +19481,7 @@
    "title": "Team leadership confirmation",
    "file": null,
    "public_url": null,
-   "coverage": "Summer 2023 title; Spring 2025 title (confirmed Oct 7, 2026); Spring 2026 undefeated title and 14-0 overall record; player names",
+   "coverage": "Summer 2023 title; Spring 2025 title; Spring 2026 undefeated title and 14-0 overall record; player names",
    "confidence": "confirmed"
   }
  ],
@@ -19519,7 +19519,7 @@
    "entity": "season",
    "entity_id": "2025-spring",
    "severity": "info",
-   "message": "Resolved Oct 7, 2026: team leadership confirmed Spring 2025 as a championship (6th title)."
+   "message": "Spring 2025 counted as a championship (6th title): verified by team leadership; TeamSideline playoff results are the documentary source."
   },
   {
    "id": "season-2026-spring",

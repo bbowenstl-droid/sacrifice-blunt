@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { asset } from "@/lib/site";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,7 +25,7 @@ export function SiteHeader() {
     <header className="no-print sticky top-0 z-40 border-b border-line-soft bg-night/88 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-[1180px] items-center gap-4 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Sacrifice Blunt home">
-          <Image src="/brand/badge-64.png" alt="" width={30} height={30} className="h-[30px] w-[30px]" priority />
+          <Image src={asset("/brand/badge-64.png")} alt="" width={30} height={30} className="h-[30px] w-[30px]" priority />
           <span className="wide text-[1.02rem] font-black tracking-tight">Sacrifice Blunt</span>
         </Link>
         <nav aria-label="Main" className="ml-auto hidden items-center gap-1 lg:flex">

@@ -3,6 +3,7 @@
  * so swapping the JSON source for Supabase/Postgres later only touches this file.
  */
 import raw from "@/data/dataset.json";
+import { toMinutes, gameStart } from "./time";
 import type { Dataset, Game, Season, Opponent, Championship, Player, StandingRow, LeagueGame } from "./types";
 
 const db = raw as unknown as Dataset;
@@ -10,29 +11,7 @@ const db = raw as unknown as Dataset;
 const bySortDesc = (a: Season, b: Season) => b.sort_key - a.sort_key;
 const gameKey = (g: { date: string; time: string }) => `${g.date} ${toMinutes(g.time).toString().padStart(4, "0")}`;
 
-export function toMinutes(t: string) {
-  const m = t.match(/(\d+):(\d+) ([AP]M)/);
-  if (!m) return 0;
-  let h = Number(m[1]) % 12;
-  if (m[3] === "PM") h += 12;
-  return h * 60 + Number(m[2]);
-}
-
-/** Game times are local to Bridgeton, MO (America/Chicago). Returns an absolute Date. */
-export function gameStart(g: { date: string; time: string }): Date {
-  const [y, mo, d] = g.date.split("-").map(Number);
-  const mins = toMinutes(g.time);
-  // US DST: second Sunday of March 2:00 → first Sunday of November 2:00
-  const nthSunday = (month: number, n: number) => {
-    const first = new Date(Date.UTC(y, month, 1)).getUTCDay();
-    return 1 + ((7 - first) % 7) + (n - 1) * 7;
-  };
-  const dstStart = Date.UTC(y, 2, nthSunday(2, 2));
-  const dstEnd = Date.UTC(y, 10, nthSunday(10, 1));
-  const local = Date.UTC(y, mo - 1, d);
-  const offset = local >= dstStart && local < dstEnd ? 5 : 6;
-  return new Date(Date.UTC(y, mo - 1, d, Math.floor(mins / 60) + offset, mins % 60));
-}
+export { toMinutes, gameStart, liveStatus } from "./time";
 
 // ---------- franchise / eras ----------
 export const getFranchise = () => db.franchise;
@@ -82,20 +61,20 @@ export function gameNeighbors(game: Game) {
   return { prev: list[i - 1] ?? null, next: list[i + 1] ?? null };
 }
 
-/** Effective status at a point in time: an unplayed game in the future is "scheduled". */
-export function liveStatus(g: Game, now = new Date()): "final" | "final_result_only" | "scheduled" | "awaiting" | "unreported" | "postponed" | "in_progress" {
-  if (g.status === "final" || g.status === "final_result_only" || g.status === "postponed") return g.status;
-  const start = gameStart(g).getTime();
-  if (now.getTime() < start) return "scheduled";
-  if (now.getTime() - start < 1000 * 60 * 70) return "in_progress";
-  // Played (or should have been) but no result has been entered yet
-  return now.getTime() - start < 1000 * 60 * 60 * 24 * 3 ? "awaiting" : "unreported";
-}
-
 export function nextGame(now = new Date()) {
   return db.games
     .filter((g) => !g.result && gameStart(g).getTime() + 1000 * 60 * 70 > now.getTime())
     .sort((a, b) => gameStart(a).getTime() - gameStart(b).getTime())[0] ?? null;
+}
+/**
+ * Games on the schedule without a result as of the data date. On the static site the
+ * browser decides which of these is "next" / "tonight" / "under way" at view time.
+ */
+export function pendingGames() {
+  const asOf = db.meta.data_as_of;
+  return db.games
+    .filter((g) => !g.result && g.status !== "postponed" && g.date >= asOf)
+    .sort((a, b) => gameStart(a).getTime() - gameStart(b).getTime());
 }
 export function latestResult() {
   const done = db.games.filter((g) => g.result);

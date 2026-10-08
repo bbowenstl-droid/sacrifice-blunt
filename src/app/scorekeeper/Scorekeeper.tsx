@@ -177,7 +177,7 @@ export function Scorekeeper({ games, players }: { games: GameOpt[]; players: Pla
               <button onClick={async () => { try { await navigator.clipboard.writeText(exportRows); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { setCopied(false); } }} className="rounded border border-line px-4 py-2 font-semibold">{copied ? "Copied" : "Copy JSON"}</button>
               <button onClick={() => { if (confirm("Clear this game from this device?")) { setS({ gameId: defaultGame, lineup: [], pas: [], current: 0, inning: 1, teamScore: "", oppScore: "" }); setStep("game"); } }} className="rounded border border-line px-4 py-2 text-mute">Start a new game</button>
             </div>
-            <p className="mt-3 text-[0.82rem] text-mute">Append these rows to <code>data/manual/plate-appearances.json</code> and rebuild. When Supabase is connected, this step writes straight to the <code>plate_appearances</code> table instead.</p>
+            <p className="mt-3 text-[0.82rem] text-mute">This file stays on your phone until you send it. The site maintainer appends it to <code>data/manual/plate-appearances.json</code> and republishes; then the box score, player stats and records update for everyone.</p>
           </div>
         </div>
       )}

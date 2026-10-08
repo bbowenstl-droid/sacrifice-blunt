@@ -9,7 +9,6 @@ import { Container, Breadcrumb, SectionTitle, StatTile, Tag, Empty } from "@/com
 import { GameList, StandingsTable, Bracket } from "@/components/games";
 import { SourceList } from "@/components/SourceList";
 
-export const revalidate = 300;
 export const dynamicParams = false;
 export const generateStaticParams = () => getSeasons().map((s) => ({ slug: s.slug }));
 

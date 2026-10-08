@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  getChampionships, getSeasons, getCurrentSeason, getStandings, getGames, nextGame, latestResult,
-  franchiseTotals, getGaps, opponentName, getSeason, liveStatus, gameStart, getAllGames, tally,
+  getChampionships, getSeasons, getCurrentSeason, getStandings, getGames, pendingGames, latestResult,
+  franchiseTotals, getGaps, opponentName, getSeason, getAllGames, tally,
 } from "@/lib/data";
 import { teamRecords } from "@/lib/records";
 import { rec, ordinal, fmtDate, fmtPct } from "@/lib/format";
@@ -11,18 +11,22 @@ import { Container, SectionTitle, StatTile, Tag, ResultChip } from "@/components
 import { GameList, StandingsTable } from "@/components/games";
 import { SeasonChart } from "@/components/SeasonChart";
 import { PerfectRun } from "@/components/PerfectRun";
-
-export const revalidate = 60;
+import { NextGameCard, type CardGame } from "@/components/live";
+import { asset } from "@/lib/site";
 
 export default function Home() {
-  const now = new Date();
   const titles = getChampionships();
   const seasons = getSeasons();
   const totals = franchiseTotals();
   const current = getCurrentSeason();
   const standings = getStandings(current.id);
   const currentGames = getGames({ seasonId: current.id });
-  const next = nextGame(now);
+  const upcoming: CardGame[] = pendingGames().map((g) => ({
+    slug: g.slug, date: g.date, time: g.time, status: g.status, result: g.result, field: g.field,
+    opponent: opponentName(g.opponent_id), home_away: g.home_away,
+    label: g.stage === "postseason" ? g.playoff_round_label?.replace(/ - .*/, "") ?? "Playoffs" : `Week ${g.week}`,
+    dateLabel: fmtDate(g.date, { weekday: true }),
+  }));
   const last = latestResult();
   const perfect = seasons.find((s) => s.undefeated)!;
   const perfectGames = getGames({ seasonId: perfect.id });
@@ -31,8 +35,6 @@ export default function Home() {
   const records = teamRecords();
   const titleRound = tally(getAllGames().filter((g) => g.is_title_game));
   const recordTeaser = ["win-streak", "most-runs", "largest-win", "best-run-diff"].map((id) => records.find((r) => r.id === id)).filter(Boolean);
-  const isToday = next && gameStart(next).toLocaleDateString("en-US", { timeZone: "America/Chicago" }) === now.toLocaleDateString("en-US", { timeZone: "America/Chicago" });
-  const nextStatus = next ? liveStatus(next, now) : null;
 
   return (
     <>
@@ -48,7 +50,7 @@ export default function Home() {
             <div>
               <h1 className="sr-only">Sacrifice Blunt — {titles.length}-Time Champions</h1>
               <Image
-                src="/brand/wordmark-light-960.webp"
+                src={asset("/brand/wordmark-light-960.webp")}
                 alt="Sac Blunt"
                 width={960}
                 height={560}
@@ -65,31 +67,10 @@ export default function Home() {
 
             {/* next game / tonight card */}
             <div className="w-full md:w-[330px]">
-              {next ? (
-                <Link href={`/games/${next.slug}`} className="panel block overflow-hidden border-line transition-colors hover:border-mask/50">
-                  <div className="flex items-center justify-between border-b border-line-soft px-4 py-2 text-[0.78rem] font-semibold">
-                    <span className="flex items-center gap-2 text-mask">
-                      <span className="live-dot h-2 w-2 rounded-full bg-mask" />
-                      {nextStatus === "in_progress" ? "Under way" : isToday ? "Tonight" : "Next game"}
-                    </span>
-                    <span className="text-mute">{next.stage === "postseason" ? next.playoff_round_label?.replace(/ - .*/, "") : `Week ${next.week}`}</span>
-                  </div>
-                  <div className="px-4 py-4">
-                    <div className="text-[0.82rem] text-mute">{next.home_away === "home" ? "vs" : "at"}</div>
-                    <div className="wide text-[1.6rem] font-black leading-tight">{opponentName(next.opponent_id)}</div>
-                    <div className="mt-3 flex items-center gap-3 text-[0.9rem]">
-                      <span className="font-semibold">{fmtDate(next.date, { weekday: true })}</span>
-                      <span className="text-mute">{next.time}</span>
-                      <span className="text-mute">Field {next.field?.replace("F", "")}</span>
-                    </div>
-                  </div>
-                  <div className="border-t border-line-soft bg-navy/40 px-4 py-2 text-[0.78rem] text-mute">
-                    {current.session} {current.year} · {rec(current.regular_wins, current.regular_losses)} · {ordinal(current.regular_place)} of {current.league_size}
-                  </div>
-                </Link>
-              ) : (
-                <div className="panel p-4 text-[0.9rem] text-mute">No upcoming games on the schedule yet.</div>
-              )}
+              <NextGameCard
+                games={upcoming}
+                footer={`${current.session} ${current.year} · ${rec(current.regular_wins, current.regular_losses)} · ${ordinal(current.regular_place)} of ${current.league_size}`}
+              />
             </div>
           </div>
         </Container>
@@ -124,7 +105,7 @@ export default function Home() {
                 <span className="display num text-[2.4rem]">{rec(current.regular_wins, current.regular_losses)}</span>
                 <span className="text-mute">{ordinal(current.regular_place)} of {current.league_size} · {current.regular_streak_end}</span>
               </div>
-              <GameList games={[...currentGames].reverse()} now={now} />
+              <GameList games={[...currentGames].reverse()} />
             </div>
             <div>
               <div className="kicker mb-2">Standings</div>
