@@ -45,7 +45,7 @@ export function NextGameCard({ games, footer }: { games: CardGame[]; footer: str
       ?? [...games].reverse().find((g) => now.getTime() - gameStart(g).getTime() < 3 * 24 * 60 * 60 * 1000) ?? null
     : games[0] ?? null;
   if (!next) {
-    return <div className="panel p-4 text-[0.9rem] text-mute">No upcoming games on the schedule yet. Check back when the next schedule is posted.</div>;
+    return <div className="panel p-4 text-[0.9rem] text-mute">No games on the schedule right now. The next season's schedule will show up here once it's posted.</div>;
   }
   const st = now ? liveStatus(next, now) : "scheduled";
   const heading = !now ? "Next game"

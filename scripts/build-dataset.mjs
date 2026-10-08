@@ -29,6 +29,8 @@ const people = read("data/manual/players.json");
 const pas = read("data/manual/plate-appearances.json").plate_appearances;
 const pgs = read("data/manual/player-game-stats.json").player_game_stats;
 const extras = read("data/manual/extras.json");
+const reportedResults = read("data/manual/game-results.json").results;
+const usedReports = new Set();
 
 const FRANCHISE_NAMES = new Set(["COTC", "Sacrifice Blunt"]);
 const slugify = (s) => s.toLowerCase().replace(/[’']/g, "").replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -52,7 +54,7 @@ evidence.push({
   kind: "leadership_confirmation",
   title: "Team leadership confirmation",
   file: null, public_url: null,
-  coverage: "Summer 2023 title; Spring 2025 title; Spring 2026 undefeated title and 14-0 overall record; player names",
+  coverage: "Summer 2023 title; Spring 2025 title; Spring 2026 undefeated title and 14-0 overall record; Fall 2026 playoff score; player names",
   confidence: "confirmed",
 });
 const evidenceIdForFile = (f) => slugify(f.replace(/\.pdf$/i, ""));
@@ -128,7 +130,18 @@ for (const s of seed.seasons) {
   const nth = new Map();
   const seasonGames = [];
   const sorted = [...(src?.games ?? [])].sort((a, b) => (a.date + toMinutes(a.time)).localeCompare(b.date + toMinutes(b.time)));
-  for (const g of sorted) {
+  for (const g0 of sorted) {
+    // apply a team-leadership-reported score to a game TeamSideline lists without one
+    const rep = reportedResults.find((r) => r.season_id === s.id && r.date === g0.date && r.time === g0.time && r.away === g0.away && r.home === g0.home);
+    let g = g0;
+    if (rep) {
+      usedReports.add(rep);
+      if (g0.status === "final") {
+        if (g0.away_score !== rep.away_score || g0.home_score !== rep.home_score) errors.push(`${s.id} ${g0.date}: reported score ${rep.away_score}-${rep.home_score} disagrees with TeamSideline ${g0.away_score}-${g0.home_score}`);
+      } else {
+        g = { ...g0, away_score: rep.away_score, home_score: rep.home_score, status: "final", reported: rep };
+      }
+    }
     const status = g.status === "postponed" ? "postponed"
       : g.status === "scheduled_or_unreported" ? "unreported" : g.status;
     // league-wide slate (for standings context and brackets)
@@ -165,9 +178,10 @@ for (const s of seed.seasons) {
       stage: g.stage, week: g.week ?? null, playoff_round: g.round ?? null, playoff_round_label: g.round_label ?? null,
       bracket_game: g.bracket_game ?? null, is_title_game: g.stage === "postseason" && isChampRound,
       team_name_at_time: isHome ? g.home : g.away,
-      confidence: status === "unreported" ? "unknown" : "verified",
-      source_evidence_id: srcId,
+      confidence: g.reported ? "confirmed" : status === "unreported" ? "unknown" : "verified",
+      source_evidence_id: g.reported ? g.reported.source : srcId,
       notes: [
+        ...(g.reported ? [g.reported.note] : []),
         ...(g.notes ?? []),
         ...(status === "final_result_only" ? ["TeamSideline records the result without a score."] : []),
         ...(status === "unreported" ? ["Listed on the TeamSideline schedule with no result posted."] : []),
@@ -202,7 +216,7 @@ for (const s of seed.seasons) {
   if (!s.champion && finish === "won_title_game" && !ann.title_under_review)
     errors.push(`${s.id}: parsed title-game win but not champion in seed and not flagged for review`);
 
-  const overallKnown = !postUnreported && !(s.id === "2026-fall");
+  const overallKnown = !postUnreported;
   const overallW = s.overall_wins ?? (overallKnown ? s.regular_wins + postW : null);
   const overallL = s.overall_losses ?? (overallKnown ? s.regular_losses + postL : null);
   if (s.overall_wins != null && overallKnown && s.overall_wins !== s.regular_wins + postW)
@@ -225,7 +239,7 @@ for (const s of seed.seasons) {
     runs_for: null, runs_against: null, // filled below from scored games
     playoff_finish: s.playoff_finish && !/scheduled/i.test(s.playoff_finish) ? (s.champion ? "Champion" : finishLabel ?? s.playoff_finish) : finishLabel,
     playoff_finish_code: s.champion ? "champion" : finish,
-    playoff_status_note: /scheduled/i.test(s.playoff_finish ?? "") ? "Playoffs scheduled Oct 7, 2026" : null,
+    playoff_status_note: /scheduled/i.test(s.playoff_finish ?? "") && !postFinal.length ? "Playoffs scheduled" : null,
     champion: !!s.champion,
     title_under_review: !!ann.title_under_review,
     undefeated: !!s.undefeated,
@@ -237,7 +251,7 @@ for (const s of seed.seasons) {
     postseason_note: ann.postseason_note ?? null,
     regular_season_note: ann.regular_season_note ?? null,
     source_notes: s.source,
-    source_evidence_ids: [srcId, ...(s.source.includes("plaque") ? ["fall-2025-championship-plaque"] : []), ...(s.source.includes("user confirmation") || s.leadership_added_title ? ["team-leadership"] : [])].filter(Boolean),
+    source_evidence_ids: [srcId, ...(s.source.includes("plaque") ? ["fall-2025-championship-plaque"] : []), ...(s.source.includes("user confirmation") || s.leadership_added_title || seasonGames.some((x) => x.source_evidence_id === "team-leadership") ? ["team-leadership"] : [])].filter(Boolean),
     schedule_revision: src?.schedule_revision ?? null,
     playoff_revision: src?.playoff_revision ?? null,
   });
@@ -253,6 +267,8 @@ for (const s of seasons) {
   s.runs_against = allScored ? reg.reduce((a, g) => a + g.opponent_score, 0) : null;
   s.run_totals_note = allScored ? null : "Not every regular-season game has a posted score.";
 }
+
+for (const r of reportedResults) if (!usedReports.has(r)) errors.push(`Reported result ${r.season_id} ${r.date} ${r.away} at ${r.home} matched no TeamSideline game`);
 
 // ---------- championships ----------
 const addedTitles = seed.seasons.filter((x) => x.leadership_added_title).map((x) => ({
@@ -328,7 +344,7 @@ if (errors.length) {
 const out = {
   meta: {
     built_at: new Date().toISOString(),
-    data_as_of: "2026-10-07",
+    data_as_of: "2026-10-08",
     sources: ["archive/data/seed-data.json", "data/generated/teamsideline.json", "data/manual/*"],
   },
   franchise: { ...manual.franchise, championship_count: championships.length },

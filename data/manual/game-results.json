@@ -1,0 +1,16 @@
+{
+  "_doc": "Results reported by team leadership for games that TeamSideline lists but hasn't scored yet in the supplied PDFs. Matched by season, date, time, away and home exactly as TeamSideline prints them. If a later TeamSideline export includes the score, the export wins and the build fails if they disagree.",
+  "results": [
+    {
+      "season_id": "2026-fall",
+      "date": "2026-10-07",
+      "time": "6:30 PM",
+      "away": "Sacrifice Blunt",
+      "home": "Cheers",
+      "away_score": 9,
+      "home_score": 19,
+      "source": "team-leadership",
+      "note": "Season-ending Round 1 playoff loss. Score reported by team leadership; not yet in a TeamSideline export."
+    }
+  ]
+}

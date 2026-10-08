@@ -40,9 +40,9 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     expect(s.confidence).toBe("mixed_verified_and_confirmed");
   });
   it("never invents unknown values as zero", () => {
-    const fall26 = getSeason("2026-fall")!;
-    expect(fall26.postseason_wins).toBeNull();
-    expect(fall26.overall_wins).toBeNull();
+    const fall19 = getSeason("2019-fall")!; // playoff game listed, no result posted
+    expect(fall19.postseason_wins).toBeNull();
+    expect(fall19.overall_wins).toBeNull();
     expect(getSeason("2021-summer")!.runs_for).toBeNull(); // two unreported games
     for (const g of getGames()) if (!g.result) expect(g.team_score).toBeNull();
   });
@@ -61,6 +61,13 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     expect(getStandings("2026-fall").map((r) => `${r.team} ${r.w}-${r.l}`)).toEqual([
       "The Hard Hats 8-0", "Minimal Effort 5-3", "The Down Bad Boys 5-3", "Cheers 4-4", "Sacrifice Blunt 1-7", "Chester City 1-7",
     ]);
+  });
+  it("records the Fall 2026 season-ending playoff loss as leadership-reported", () => {
+    const s = getSeason("2026-fall")!;
+    expect([s.postseason_wins, s.postseason_losses, s.overall_wins, s.overall_losses]).toEqual([0, 1, 1, 8]);
+    expect(s.playoff_finish).toBe("Lost in Round 1");
+    const g = getGames({ seasonId: "2026-fall", stage: "postseason" });
+    expect(g.map((x) => [x.result, x.team_score, x.opponent_score, x.confidence])).toEqual([["L", 9, 19, "confirmed"]]);
   });
   it("orders seasons newest first", () => {
     expect(getSeasons()[0].id).toBe("2026-fall");
