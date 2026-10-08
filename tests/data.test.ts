@@ -67,7 +67,7 @@ describe("franchise integrity (handoff acceptance criteria)", () => {
     expect([s.postseason_wins, s.postseason_losses, s.overall_wins, s.overall_losses]).toEqual([0, 1, 1, 8]);
     expect(s.playoff_finish).toBe("Lost in Round 1");
     const g = getGames({ seasonId: "2026-fall", stage: "postseason" });
-    expect(g.map((x) => [x.result, x.team_score, x.opponent_score, x.confidence])).toEqual([["L", 9, 19, "confirmed"]]);
+    expect(g.map((x) => [x.result, x.team_score, x.opponent_score, x.confidence])).toEqual([["L", 10, 20, "confirmed"]]);
   });
   it("orders seasons newest first", () => {
     expect(getSeasons()[0].id).toBe("2026-fall");
@@ -137,7 +137,7 @@ describe("season batting totals", () => {
     expect(c.avg).toBeCloseTo(41 / 67, 6);
   });
   it("uses the printed rates when a season graphic is the only source", () => {
-    const t = career("terrance");
+    const t = career("terrance", { seasonId: "2026-spring" });
     expect([t.g, t.ab, t.r, t.rbi, t.hr, t.avg, t.ops]).toEqual([null, null, 6, 12, 1, 0.556, 1.476]);
   });
   it("matches the GameChanger season export line", () => {
@@ -147,5 +147,22 @@ describe("season batting totals", () => {
   });
   it("leaves stage splits blank for season totals", () => {
     expect(career("chris", { stage: "regular" }).g).toBeNull();
+  });
+});
+
+describe("Fall 2026 scorebook", () => {
+  it("matches every final score in runs", () => {
+    const pgs = getPlayerGameStats();
+    for (const g of getGames({ seasonId: "2026-fall" })) {
+      const lines = pgs.filter((p) => p.game_id === g.id);
+      expect(lines.length).toBeGreaterThan(0);
+      expect(lines.reduce((a, p) => a + (p.r ?? 0), 0)).toBe(g.team_score);
+    }
+  });
+  it("adds game lines on top of season totals in the career line", () => {
+    const fall = battingLine("troy", getAllGames(), getPlateAppearances(), getPlayerGameStats(), { seasonId: "2026-fall" }, getSeasonBatting());
+    expect([fall.g, fall.h, fall.hr]).toEqual([9, 20, 1]);
+    const career = battingLine("troy", getAllGames(), getPlateAppearances(), getPlayerGameStats(), {}, getSeasonBatting());
+    expect(career.g).toBe(20 + 9);
   });
 });

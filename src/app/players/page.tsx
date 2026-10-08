@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPlayers, getPlayerSeasons, getAllGames, getPlateAppearances, getPlayerGameStats, getSeasonBatting } from "@/lib/data";
 import { battingLine, fmtRate, fmtCount } from "@/lib/stats";
-import { Container, PageHeader, ConfidenceBadge } from "@/components/ui";
+import { Container, PageHeader, ConfidenceBadge, SectionTitle } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Players", description: "Sacrifice Blunt player database: rosters, career batting and season splits." };
 
@@ -15,8 +15,11 @@ export default function PlayersPage() {
         Everyone team leadership has named so far. Historical rosters are still being filled in, so this list is incomplete. Career batting combines every season on file; a dash means not recorded, not zero.
       </PageHeader>
       <Container className="pt-8">
+        {[{ title: "Roster", list: players.filter((p) => !p.sub) }, { title: "Subs", list: players.filter((p) => p.sub) }].filter((grp) => grp.list.length).map(({ title, list }) => (
+          <section key={title} className="mb-10">
+            <SectionTitle note={title === "Subs" ? "Fill-ins who batted for us. Their numbers count in game and team totals." : undefined}>{title}</SectionTitle>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {players.map((p) => {
+          {list.map((p) => {
             const line = battingLine(p.slug, games, pas, pgs, {}, sb);
             const seasons = getPlayerSeasons(p.slug);
             return (
@@ -44,6 +47,8 @@ export default function PlayersPage() {
             );
           })}
         </ul>
+          </section>
+        ))}
       </Container>
     </>
   );

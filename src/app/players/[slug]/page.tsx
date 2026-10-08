@@ -36,7 +36,8 @@ export default async function PlayerPage({ params }: { params: Promise<{ slug: s
   const byYear = years.map((y) => ({ label: String(y), line: battingLine(p.slug, games, pas, pgs, { year: y }, sb) }));
   const hasData = hasBatting(splits[0].line);
   const partialSeasons = countingOnlySeasons(p.slug, sb).map(getSeasonLabel);
-  const seasonTotalsOnly = hasData && !pas.some((x) => x.player_slug === p.slug) && !pgs.some((x) => x.player_slug === p.slug);
+  const hasSeasonTotals = sb.some((x) => x.player_slug === p.slug);
+  const hasScorebook = pgs.some((x) => x.player_slug === p.slug && x.game_id.startsWith("2026-fall"));
 
   return (
     <>
@@ -65,13 +66,14 @@ export default async function PlayerPage({ params }: { params: Promise<{ slug: s
           <SectionTitle note={hasData ? undefined : "No batting data entered for this player yet"}>Batting</SectionTitle>
           <BattingTable rows={splits} />
           {!hasData && <p className="mt-2 text-[0.82rem] text-mute">Every stat is calculated from scored games. Dashes mean the data hasn&apos;t been entered — not zero.</p>}
-          {seasonTotalsOnly && (
+          {hasSeasonTotals && (
             <p className="mt-2 text-[0.82rem] text-mute">
-              Built from season totals (stat-app exports and season stat boards), which aren&apos;t split by regular season and playoffs, so those rows stay blank.
+              Earlier seasons come from season totals (stat-app exports and season stat boards), which aren&apos;t split by regular season, playoffs or game, so those rows only cover game-by-game seasons.
               {partialSeasons.length > 0 && <> {partialSeasons.join(", ")} only recorded AVG, R, RBI, HR and OPS: those runs, RBI and homers count in the career line, but the career averages use seasons with at-bats.</>}
               {" "}Dashes mean not recorded — not zero.
             </p>
           )}
+          {hasScorebook && <p className="mt-2 text-[0.82rem] text-mute">Fall 2026 is game by game from the team scorebook; some runs and RBI were estimated so each game matches its final score.</p>}
         </section>
 
         {bySeason.length > 0 && (

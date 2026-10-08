@@ -178,6 +178,8 @@ export interface Player {
   bio: string | null;
   confidence: Confidence;
   source: string;
+  /** Fill-in player, listed apart from the regular roster. */
+  sub?: boolean;
 }
 
 export interface RosterEntry {

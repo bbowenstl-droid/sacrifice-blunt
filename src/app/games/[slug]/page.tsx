@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   getAllGames, getGame, getSeason, opponentName, getOpponent, sameNightGames, gameNeighbors, headToHead,
-  getPlateAppearances, getPlayer, pendingGames,
+  getPlateAppearances, getPlayerGameStats, getPlayer, pendingGames,
 } from "@/lib/data";
 import { lineFromPAs, finalize, fmtRate } from "@/lib/stats";
 import { fmtLongDate, fmtDate, rec } from "@/lib/format";
@@ -32,6 +32,8 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
   const h2h = headToHead(opp.id);
   const pas = getPlateAppearances().filter((p) => p.game_id === g.id);
   const batters = [...new Set(pas.sort((a, b) => a.pa_index - b.pa_index).map((p) => p.player_slug))];
+  // No plate-appearance detail: fall back to imported per-game batting lines (kept in lineup order).
+  const gameLines = pas.length ? [] : getPlayerGameStats().filter((p) => p.game_id === g.id);
   const notPlayedYet = pendingGames().some((x) => x.id === g.id);
   const us = { name: g.team_name_at_time, score: g.team_score, won: g.result === "W" };
   const them = { name: opp.canonical_name, score: g.opponent_score, won: g.result === "L" };
@@ -75,8 +77,27 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
       <Container className="grid gap-10 pt-8 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-10">
           <section>
-            <SectionTitle note="Batting order and plate appearances, entered by the scorekeeper">Box score</SectionTitle>
-            {pas.length ? (
+            <SectionTitle note={gameLines.length ? "From the team scorebook. Some runs and RBI are estimated to match the final score." : "Batting order and plate appearances, entered by the scorekeeper"}>Box score</SectionTitle>
+            {gameLines.length > 0 ? (
+              <div className="scroller panel px-2">
+                <table className="stat-table text-[0.9rem]">
+                  <thead><tr><th>Batter</th><th>PA</th><th>AB</th><th>R</th><th>H</th><th>2B</th><th>3B</th><th>HR</th><th>RBI</th><th>BB</th><th>K</th><th>AVG</th></tr></thead>
+                  <tbody>
+                    {gameLines.map((x) => {
+                      const { game_id: _g, player_slug: slug, ...rest } = x;
+                      const l = finalize(rest, 1);
+                      const pl = getPlayer(slug);
+                      return (
+                        <tr key={slug}>
+                          <td><Link href={`/players/${slug}`} className="font-semibold hover:text-cardinal-hi">{pl?.name ?? slug}</Link>{pl?.sub && <span className="ml-1.5 text-[0.75rem] text-mute">sub</span>}</td>
+                          <td>{l.pa ?? "—"}</td><td>{l.ab ?? "—"}</td><td>{l.r ?? "—"}</td><td>{l.h ?? "—"}</td><td>{l["2b"] ?? "—"}</td><td>{l["3b"] ?? "—"}</td><td>{l.hr ?? "—"}</td><td>{l.rbi ?? "—"}</td><td>{l.bb ?? "—"}</td><td>{l.k ?? "—"}</td><td>{fmtRate(l.avg)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : pas.length ? (
               <div className="scroller panel px-2">
                 <table className="stat-table text-[0.9rem]">
                   <thead><tr><th>Batter</th><th>PA</th><th>AB</th><th>R</th><th>H</th><th>2B</th><th>3B</th><th>HR</th><th>RBI</th><th>BB</th><th>K</th><th>AVG</th></tr></thead>

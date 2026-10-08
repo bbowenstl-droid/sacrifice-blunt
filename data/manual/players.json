@@ -11,7 +11,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "Team leadership"
+      "source": "Team leadership",
+      "sub": false
     },
     {
       "slug": "dan",
@@ -23,7 +24,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "Team leadership (Spring 2026 stat export)"
+      "source": "Team leadership (Spring 2026 stat export)",
+      "sub": false
     },
     {
       "slug": "stefan",
@@ -35,7 +37,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "Team leadership (Spring 2026 stat export)"
+      "source": "Team leadership (Spring 2026 stat export)",
+      "sub": false
     },
     {
       "slug": "troy",
@@ -47,7 +50,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "Team leadership (Spring 2026 stat export)"
+      "source": "Team leadership (Spring 2026 stat export)",
+      "sub": false
     },
     {
       "slug": "logan",
@@ -59,7 +63,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "Spring 2026 stat export (first name only)"
+      "source": "Spring 2026 stat export (first name only)",
+      "sub": false
     },
     {
       "slug": "red",
@@ -71,7 +76,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "Team leadership"
+      "source": "Team leadership",
+      "sub": false
     },
     {
       "slug": "jordan",
@@ -83,7 +89,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "Spring 2026 stat export (first name only)"
+      "source": "Spring 2026 stat export (first name only)",
+      "sub": false
     },
     {
       "slug": "gary",
@@ -95,7 +102,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "Spring 2026 stat export (first name only)"
+      "source": "Spring 2026 stat export (first name only)",
+      "sub": false
     },
     {
       "slug": "tim",
@@ -107,7 +115,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "Spring 2026 stat export (first name only)"
+      "source": "Spring 2026 stat export (first name only)",
+      "sub": false
     },
     {
       "slug": "chris",
@@ -119,7 +128,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "michael",
@@ -131,7 +141,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "brandon",
@@ -143,7 +154,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "jason",
@@ -155,7 +167,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "brett",
@@ -167,7 +180,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "alex",
@@ -179,7 +193,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "curtis",
@@ -191,7 +206,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "jake",
@@ -203,7 +219,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "joel",
@@ -215,7 +232,8 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
     },
     {
       "slug": "terrance",
@@ -227,7 +245,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "GameChanger / season stat exports (first name only)"
+      "source": "GameChanger / season stat exports (first name only)",
+      "sub": false
     },
     {
       "slug": "corey",
@@ -239,7 +258,8 @@
       "photo": null,
       "bio": null,
       "confidence": "partial",
-      "source": "GameChanger / season stat exports (first name only)"
+      "source": "GameChanger / season stat exports (first name only)",
+      "sub": false
     },
     {
       "slug": "tj",
@@ -251,7 +271,73 @@
       "photo": null,
       "bio": null,
       "confidence": "confirmed",
-      "source": "GameChanger / season stat exports"
+      "source": "GameChanger / season stat exports",
+      "sub": false
+    },
+    {
+      "slug": "dylan",
+      "name": "Dylan",
+      "short_name": "Dylan",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Fall 2026 scorebook (substitute, first name only)",
+      "sub": true
+    },
+    {
+      "slug": "max",
+      "name": "Max",
+      "short_name": "Max",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Fall 2026 scorebook (substitute, first name only)",
+      "sub": true
+    },
+    {
+      "slug": "jay",
+      "name": "Jay",
+      "short_name": "Jay",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Fall 2026 scorebook (substitute, first name only)",
+      "sub": true
+    },
+    {
+      "slug": "robbie",
+      "name": "Robbie",
+      "short_name": "Robbie",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Fall 2026 scorebook (substitute, first name only)",
+      "sub": true
+    },
+    {
+      "slug": "michael-sub",
+      "name": "Michael",
+      "short_name": "Michael",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Fall 2026 scorebook (substitute, first name only); a different player from Michael Schindler",
+      "sub": true
     }
   ],
   "season_rosters": [
@@ -702,6 +788,125 @@
       "number": "15",
       "positions": [],
       "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "brandon",
+      "number": "15",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "dylan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "gary",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "jay",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "joel",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "jordan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "logan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "max",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "michael-sub",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "red",
+      "number": "13",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "robbie",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "terrance",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-fall",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
     }
   ],
   "roster_notes": {
@@ -709,6 +914,7 @@
     "2023-summer": "Roster from the GameChanger season export (14 players, 6 games tracked). Some players are listed by first name only.",
     "2024-spring": "Roster from the GameChanger season export (11 players, 2 games tracked). Some players are listed by first name only.",
     "2025-spring": "Roster from the GameChanger season export (13 players, 4 games tracked). Some players are listed by first name only.",
-    "2025-fall": "Roster from the GameChanger season export (13 players, 8 games tracked). Some players are listed by first name only."
+    "2025-fall": "Roster from the GameChanger season export (13 players, 8 games tracked). Some players are listed by first name only.",
+    "2026-fall": "Batting lines for all 9 games come from the team scorebook. Some runs and RBI were estimated so each game matches its final score, and hits that couldn't be read were counted as singles. Dylan, Max, Jay, Robbie and Michael (not Schindler) subbed."
   }
 }
