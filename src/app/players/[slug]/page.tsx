@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPlayers, getPlayer, getPlayerSeasons, getAllGames, getPlateAppearances, getPlayerGameStats, getChampionship, opponentName } from "@/lib/data";
-import { battingLine, playerGameLines, finalize } from "@/lib/stats";
+import { getPlayers, getPlayer, getPlayerSeasons, getAllGames, getPlateAppearances, getPlayerGameStats, getSeasonBatting, getSeasonLabel, getChampionship, opponentName } from "@/lib/data";
+import { battingLine, playerGameLines, finalize, hasBatting, countingOnlySeasons } from "@/lib/stats";
 import { fmtDate } from "@/lib/format";
 import { Container, Breadcrumb, SectionTitle, Tag, Empty, ConfidenceBadge } from "@/components/ui";
 import { BattingTable } from "@/components/BattingTable";
@@ -17,24 +17,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PlayerPage({ params }: { params: Promise<{ slug: string }> }) {
   const p = getPlayer((await params).slug);
   if (!p) notFound();
-  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats();
+  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats(), sb = getSeasonBatting();
   const seasons = getPlayerSeasons(p.slug).sort((a, b) => b.season.sort_key - a.season.sort_key);
   const titles = seasons.filter((s) => s.season.champion).map((s) => getChampionship(s.season_id)!);
   const recent = playerGameLines(p.slug, games, pas, pgs, { lastN: 10 });
   const splits = [
-    { label: "Career", line: battingLine(p.slug, games, pas, pgs), strong: true },
-    { label: "Regular season", line: battingLine(p.slug, games, pas, pgs, { stage: "regular" }) },
-    { label: "Playoffs", line: battingLine(p.slug, games, pas, pgs, { stage: "postseason" }) },
-    { label: "Last 5 games", line: battingLine(p.slug, games, pas, pgs, { lastN: 5 }) },
-    { label: "Last 10 games", line: battingLine(p.slug, games, pas, pgs, { lastN: 10 }) },
+    { label: "Career", line: battingLine(p.slug, games, pas, pgs, {}, sb), strong: true },
+    { label: "Regular season", line: battingLine(p.slug, games, pas, pgs, { stage: "regular" }, sb) },
+    { label: "Playoffs", line: battingLine(p.slug, games, pas, pgs, { stage: "postseason" }, sb) },
+    { label: "Last 5 games", line: battingLine(p.slug, games, pas, pgs, { lastN: 5 }, sb) },
+    { label: "Last 10 games", line: battingLine(p.slug, games, pas, pgs, { lastN: 10 }, sb) },
   ];
   const bySeason = seasons.map((s) => ({
     label: <Link href={`/seasons/${s.season_id}`} className="hover:text-cardinal-hi">{s.season.session} {s.season.year}</Link>,
-    line: battingLine(p.slug, games, pas, pgs, { seasonId: s.season_id }),
+    line: battingLine(p.slug, games, pas, pgs, { seasonId: s.season_id }, sb),
   }));
   const years = [...new Set(seasons.map((s) => s.season.year))];
-  const byYear = years.map((y) => ({ label: String(y), line: battingLine(p.slug, games, pas, pgs, { year: y }) }));
-  const hasData = splits[0].line.g !== null;
+  const byYear = years.map((y) => ({ label: String(y), line: battingLine(p.slug, games, pas, pgs, { year: y }, sb) }));
+  const hasData = hasBatting(splits[0].line);
+  const partialSeasons = countingOnlySeasons(p.slug, sb).map(getSeasonLabel);
+  const seasonTotalsOnly = hasData && !pas.some((x) => x.player_slug === p.slug) && !pgs.some((x) => x.player_slug === p.slug);
 
   return (
     <>
@@ -63,6 +65,13 @@ export default async function PlayerPage({ params }: { params: Promise<{ slug: s
           <SectionTitle note={hasData ? undefined : "No batting data entered for this player yet"}>Batting</SectionTitle>
           <BattingTable rows={splits} />
           {!hasData && <p className="mt-2 text-[0.82rem] text-mute">Every stat is calculated from scored games. Dashes mean the data hasn&apos;t been entered — not zero.</p>}
+          {seasonTotalsOnly && (
+            <p className="mt-2 text-[0.82rem] text-mute">
+              Built from season totals (stat-app exports and season stat boards), which aren&apos;t split by regular season and playoffs, so those rows stay blank.
+              {partialSeasons.length > 0 && <> {partialSeasons.join(", ")} only recorded AVG, R, RBI, HR and OPS: those runs, RBI and homers count in the career line, but the career averages use seasons with at-bats.</>}
+              {" "}Dashes mean not recorded — not zero.
+            </p>
+          )}
         </section>
 
         {bySeason.length > 0 && (

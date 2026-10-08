@@ -1,9 +1,9 @@
 /**
- * Batting stats engine. Season and career numbers are always computed from
- * game-level rows (plate appearances first, imported per-game aggregates second),
- * never stored as totals. Anything that was not captured stays null and renders as "—".
+ * Batting stats engine. Season and career numbers are computed from game-level rows
+ * (plate appearances first, imported per-game aggregates second), falling back to
+ * season totals from a stat export or graphic when a season has no game-level data. Anything that was not captured stays null and renders as "—".
  */
-import type { Game, PAResult, PlateAppearance, PlayerGameStat } from "./types";
+import type { Game, PAResult, PlateAppearance, PlayerGameStat, SeasonBatting } from "./types";
 
 export const COUNTING = ["g", "pa", "ab", "r", "h", "1b", "2b", "3b", "hr", "rbi", "bb", "k", "sac", "roe", "tb", "xbh"] as const;
 export type CountingKey = (typeof COUNTING)[number];
@@ -86,11 +86,71 @@ export function playerGameLines(slug: string, games: Game[], pas: PlateAppearanc
   return f.lastN ? rows.slice(0, f.lastN) : rows;
 }
 
-export function battingLine(slug: string, games: Game[], pas: PlateAppearance[], pgs: PlayerGameStat[], f: StatFilter = {}): BattingLine {
+/** Fields a source must have captured for its numbers to count toward AVG/OBP/SLG/OPS. */
+const BOX: CountingKey[] = ["ab", "h", "1b", "2b", "3b", "hr", "bb"];
+type Part = { line: Partial1; g?: number; published?: SeasonBatting["published"] };
+
+/**
+ * Combines sources that captured different stats (e.g. full season exports plus a season
+ * graphic that only printed R/RBI/HR). Counting stats add up across every source that
+ * recorded them; rate stats and total bases use only sources with a full box line, so a
+ * season without at-bats never distorts a career average.
+ */
+export function combineLines(parts: Part[]): BattingLine {
+  if (!parts.length) return finalize(null, 0);
+  const lenient: Partial1 = {};
+  let g: number | null = null;
+  for (const p of parts) {
+    for (const k of [...COUNTING, "hbp"] as const) {
+      const v = p.line[k as CountingKey];
+      if (v !== undefined) (lenient as Record<string, number>)[k] = ((lenient as Record<string, number>)[k] ?? 0) + v;
+    }
+    if (p.g !== undefined) g = (g ?? 0) + p.g;
+  }
+  let box: Partial1 | null = null;
+  for (const p of parts.filter((x) => BOX.every((k) => x.line[k] !== undefined))) box = add(box, p.line);
+  const fromBox = finalize(box, 0);
+  const num = (k: CountingKey) => (lenient[k] !== undefined ? (lenient[k] as number) : null);
+  const out: BattingLine = {
+    g, pa: num("pa"), ab: num("ab"), r: num("r"), h: num("h"), "1b": num("1b"), "2b": num("2b"), "3b": num("3b"),
+    hr: num("hr"), rbi: num("rbi"), bb: num("bb"), k: num("k"), sac: num("sac"), roe: num("roe"),
+    tb: fromBox.tb, xbh: fromBox.xbh, avg: fromBox.avg, obp: fromBox.obp, slg: fromBox.slg, ops: fromBox.ops,
+  };
+  // Nothing with at-bats: fall back to the rates the source printed, but only for a single source.
+  const pub = parts.filter((p) => p.published);
+  if (!box && parts.length === 1 && pub.length === 1) {
+    const r = pub[0].published!;
+    out.avg = r.avg ?? null; out.obp = r.obp ?? null; out.slg = r.slg ?? null; out.ops = r.ops ?? null;
+  }
+  return out;
+}
+
+export function battingLine(
+  slug: string, games: Game[], pas: PlateAppearance[], pgs: PlayerGameStat[], f: StatFilter = {}, seasonStats: SeasonBatting[] = [],
+): BattingLine {
   const rows = playerGameLines(slug, games, pas, pgs, f);
   let sum: Partial1 | null = null;
   for (const r of rows) sum = add(sum, r.line);
-  return finalize(sum, rows.length);
+  // Season totals can't be split by stage or by game, and game-level rows for a season replace them.
+  const covered = new Set(rows.map((r) => r.game.season_id));
+  const aggs = f.stage || f.lastN ? [] : seasonStats.filter((s) =>
+    s.player_slug === slug && !covered.has(s.season_id) &&
+    (!f.seasonId || s.season_id === f.seasonId) && (!f.year || s.season_id.startsWith(`${f.year}-`)));
+  if (!aggs.length) return finalize(sum, rows.length);
+  const parts: Part[] = sum ? [{ line: sum, g: rows.length }] : [];
+  for (const a of aggs) {
+    const { season_id: _s, player_slug: _p, g, published, source: _src, ...line } = a;
+    parts.push({ line: line as Partial1, g, published });
+  }
+  return combineLines(parts);
+}
+
+/** True when any stat at all is known for this line. */
+export const hasBatting = (l: BattingLine) => Object.values(l).some((v) => v !== null);
+
+/** Seasons whose source had no at-bats, so they add to R/RBI/HR but not to the averages. */
+export function countingOnlySeasons(slug: string, seasonStats: SeasonBatting[]) {
+  return seasonStats.filter((s) => s.player_slug === slug && (s.ab === undefined || s.h === undefined)).map((s) => s.season_id);
 }
 
 export const fmtRate = (n: number | null) => (n === null ? "—" : n >= 1 ? n.toFixed(3) : n.toFixed(3).replace(/^0/, ""));

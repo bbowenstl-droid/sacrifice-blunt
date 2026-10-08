@@ -201,6 +201,17 @@ export interface PlateAppearance {
   notes?: string | null;
 }
 
+export interface SeasonBatting {
+  season_id: string;
+  player_slug: string;
+  g?: number; pa?: number; ab?: number; r?: number; h?: number;
+  "1b"?: number; "2b"?: number; "3b"?: number; hr?: number;
+  rbi?: number; bb?: number; k?: number; sac?: number; roe?: number;
+  /** Rates printed by the source; only used when AB/H were not captured. */
+  published?: { avg?: number; obp?: number; slg?: number; ops?: number };
+  source: string;
+}
+
 export interface PlayerGameStat {
   game_id: string;
   player_slug: string;
@@ -243,6 +254,7 @@ export interface Dataset {
   roster_notes: Record<string, string>;
   plate_appearances: PlateAppearance[];
   player_game_stats: PlayerGameStat[];
+  season_batting: SeasonBatting[];
   awards: unknown[];
   milestones: unknown[];
   media: unknown[];

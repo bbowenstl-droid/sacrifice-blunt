@@ -1,28 +1,714 @@
 {
-  "_doc": "Player identities. Only people team leadership has named are listed. Batting stats live in plate-appearances.json / player-game-stats.json and are never typed in here.",
+  "_doc": "Player identities. Only people team leadership has named are listed. Batting stats live in plate-appearances.json / player-game-stats.json / season-batting.json and are never typed in here.",
   "players": [
-    { "slug": "brendan", "name": "Brendan Bowen", "short_name": "Brendan", "number": "77", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership" },
-    { "slug": "dan", "name": "Dan Cardenas", "short_name": "Dan", "number": "12", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
-    { "slug": "stefan", "name": "Stefan Cotton", "short_name": "Stefan", "number": "76", "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
-    { "slug": "troy", "name": "Troy Guffey", "short_name": "Troy", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "confirmed", "source": "Team leadership (Spring 2026 stat export)" },
-    { "slug": "logan", "name": "Logan", "short_name": "Logan", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
-    { "slug": "red", "name": "Red", "short_name": "Red", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
-    { "slug": "jordan", "name": "Jordan", "short_name": "Jordan", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
-    { "slug": "gary", "name": "Gary", "short_name": "Gary", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" },
-    { "slug": "tim", "name": "Tim", "short_name": "Tim", "number": null, "positions": [], "active": true, "photo": null, "bio": null, "confidence": "partial", "source": "Spring 2026 stat export (first name only)" }
+    {
+      "slug": "brendan",
+      "name": "Brendan Bowen",
+      "short_name": "Brendan",
+      "number": "77",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "Team leadership"
+    },
+    {
+      "slug": "dan",
+      "name": "Dan Cardenas",
+      "short_name": "Dan",
+      "number": "12",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "Team leadership (Spring 2026 stat export)"
+    },
+    {
+      "slug": "stefan",
+      "name": "Stefan Cotton",
+      "short_name": "Stefan",
+      "number": "76",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "Team leadership (Spring 2026 stat export)"
+    },
+    {
+      "slug": "troy",
+      "name": "Troy Guffey",
+      "short_name": "Troy",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "Team leadership (Spring 2026 stat export)"
+    },
+    {
+      "slug": "logan",
+      "name": "Logan",
+      "short_name": "Logan",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Spring 2026 stat export (first name only)"
+    },
+    {
+      "slug": "red",
+      "name": "Andrew Redman",
+      "short_name": "Red",
+      "number": "13",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "Team leadership"
+    },
+    {
+      "slug": "jordan",
+      "name": "Jordan",
+      "short_name": "Jordan",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Spring 2026 stat export (first name only)"
+    },
+    {
+      "slug": "gary",
+      "name": "Gary",
+      "short_name": "Gary",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Spring 2026 stat export (first name only)"
+    },
+    {
+      "slug": "tim",
+      "name": "Tim",
+      "short_name": "Tim",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "Spring 2026 stat export (first name only)"
+    },
+    {
+      "slug": "chris",
+      "name": "Chris Higgins",
+      "short_name": "Chris",
+      "number": "21",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "michael",
+      "name": "Michael Schindler",
+      "short_name": "Michael",
+      "number": "00",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "brandon",
+      "name": "Brandon Minor",
+      "short_name": "Brandon",
+      "number": "15",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "jason",
+      "name": "Jason Neff",
+      "short_name": "Jason",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "brett",
+      "name": "Brett Williams",
+      "short_name": "Brett",
+      "number": "17",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "alex",
+      "name": "Alex Langella",
+      "short_name": "Alex",
+      "number": "47",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "curtis",
+      "name": "Curtis Laws",
+      "short_name": "Curtis",
+      "number": "4",
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "jake",
+      "name": "Jake Sullens",
+      "short_name": "Jake",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "joel",
+      "name": "Joel Uelk",
+      "short_name": "Joel",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    },
+    {
+      "slug": "terrance",
+      "name": "Terrance",
+      "short_name": "Terrance",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "GameChanger / season stat exports (first name only)"
+    },
+    {
+      "slug": "corey",
+      "name": "Corey",
+      "short_name": "Corey",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "partial",
+      "source": "GameChanger / season stat exports (first name only)"
+    },
+    {
+      "slug": "tj",
+      "name": "TJ Ross",
+      "short_name": "TJ",
+      "number": null,
+      "positions": [],
+      "active": true,
+      "photo": null,
+      "bio": null,
+      "confidence": "confirmed",
+      "source": "GameChanger / season stat exports"
+    }
   ],
   "season_rosters": [
-    { "season_id": "2026-spring", "player_slug": "brendan", "number": "77", "positions": [], "confidence": "confirmed" },
-    { "season_id": "2026-spring", "player_slug": "dan", "number": "12", "positions": [], "confidence": "confirmed" },
-    { "season_id": "2026-spring", "player_slug": "stefan", "number": "76", "positions": [], "confidence": "confirmed" },
-    { "season_id": "2026-spring", "player_slug": "troy", "number": null, "positions": [], "confidence": "confirmed" },
-    { "season_id": "2026-spring", "player_slug": "logan", "number": null, "positions": [], "confidence": "partial" },
-    { "season_id": "2026-spring", "player_slug": "red", "number": null, "positions": [], "confidence": "partial" },
-    { "season_id": "2026-spring", "player_slug": "jordan", "number": null, "positions": [], "confidence": "partial" },
-    { "season_id": "2026-spring", "player_slug": "gary", "number": null, "positions": [], "confidence": "partial" },
-    { "season_id": "2026-spring", "player_slug": "tim", "number": null, "positions": [], "confidence": "partial" }
+    {
+      "season_id": "2026-spring",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "logan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "red",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "jordan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "gary",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "tim",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "joel",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "jake",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "chris",
+      "number": "21",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "brandon",
+      "number": "15",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "red",
+      "number": "13",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "brett",
+      "number": "17",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "jason",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "alex",
+      "number": "47",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2023-summer",
+      "player_slug": "curtis",
+      "number": "4",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "chris",
+      "number": "21",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "jason",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "red",
+      "number": "13",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "brandon",
+      "number": "15",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "brett",
+      "number": "17",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "joel",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2024-spring",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "tim",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "gary",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "brett",
+      "number": "17",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "alex",
+      "number": "47",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "corey",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "chris",
+      "number": "21",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "jordan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-spring",
+      "player_slug": "logan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "logan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "troy",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "jordan",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "red",
+      "number": "13",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "chris",
+      "number": "21",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "brendan",
+      "number": "77",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "corey",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "gary",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "stefan",
+      "number": "76",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "dan",
+      "number": "12",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "tj",
+      "number": null,
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2025-fall",
+      "player_slug": "alex",
+      "number": "47",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "chris",
+      "number": "21",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "terrance",
+      "number": null,
+      "positions": [],
+      "confidence": "partial"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "michael",
+      "number": "00",
+      "positions": [],
+      "confidence": "confirmed"
+    },
+    {
+      "season_id": "2026-spring",
+      "player_slug": "brandon",
+      "number": "15",
+      "positions": [],
+      "confidence": "confirmed"
+    }
   ],
   "roster_notes": {
-    "2026-spring": "Partial roster: 9 of the 11 players in the Spring 2026 stat export are identified so far."
+    "2026-spring": "Roster from the Spring 2026 season stat board (13 players). Some players are listed by first name only.",
+    "2023-summer": "Roster from the GameChanger season export (14 players, 6 games tracked). Some players are listed by first name only.",
+    "2024-spring": "Roster from the GameChanger season export (11 players, 2 games tracked). Some players are listed by first name only.",
+    "2025-spring": "Roster from the GameChanger season export (13 players, 4 games tracked). Some players are listed by first name only.",
+    "2025-fall": "Roster from the GameChanger season export (13 players, 8 games tracked). Some players are listed by first name only."
   }
 }

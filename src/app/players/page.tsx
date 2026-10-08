@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getPlayers, getPlayerSeasons, getAllGames, getPlateAppearances, getPlayerGameStats } from "@/lib/data";
+import { getPlayers, getPlayerSeasons, getAllGames, getPlateAppearances, getPlayerGameStats, getSeasonBatting } from "@/lib/data";
 import { battingLine, fmtRate, fmtCount } from "@/lib/stats";
 import { Container, PageHeader, ConfidenceBadge } from "@/components/ui";
 
@@ -8,16 +8,16 @@ export const metadata: Metadata = { title: "Players", description: "Sacrifice Bl
 
 export default function PlayersPage() {
   const players = getPlayers();
-  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats();
+  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats(), sb = getSeasonBatting();
   return (
     <>
       <PageHeader kicker="Player database" title="Players" aside={<Link href="/players/compare" className="rounded border border-line px-4 py-2 text-[0.9rem] font-semibold hover:border-chalk">Compare players</Link>}>
-        Everyone team leadership has named so far. Historical rosters are still being filled in, so this list is incomplete. Batting numbers appear as games are scored — a dash means no data yet, not zero.
+        Everyone team leadership has named so far. Historical rosters are still being filled in, so this list is incomplete. Career batting combines every season on file; a dash means not recorded, not zero.
       </PageHeader>
       <Container className="pt-8">
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {players.map((p) => {
-            const line = battingLine(p.slug, games, pas, pgs);
+            const line = battingLine(p.slug, games, pas, pgs, {}, sb);
             const seasons = getPlayerSeasons(p.slug);
             return (
               <li key={p.slug}>

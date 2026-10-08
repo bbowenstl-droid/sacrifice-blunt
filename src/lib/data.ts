@@ -160,6 +160,8 @@ export const getPlayerSeasons = (slug: string) =>
 export const getRosterNote = (seasonId: string) => db.roster_notes[seasonId] ?? null;
 export const getPlateAppearances = () => db.plate_appearances;
 export const getPlayerGameStats = () => db.player_game_stats;
+export const getSeasonBatting = () => db.season_batting;
+export const getSeasonLabel = (id: string) => { const s = getSeason(id); return s ? `${s.session} ${s.year}` : id; };
 
 // ---------- evidence / admin ----------
 export const getEvidence = (id: string) => db.source_evidence.find((e) => e.id === id) ?? null;

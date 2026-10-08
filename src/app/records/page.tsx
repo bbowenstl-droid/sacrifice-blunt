@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { teamRecords } from "@/lib/records";
-import { getSeasons, franchiseTotals, getPlayers, getAllGames, getPlateAppearances, getPlayerGameStats, tally, getChampionships, getSeason } from "@/lib/data";
-import { battingLine, fmtRate, type BattingLine } from "@/lib/stats";
+import { getSeasons, franchiseTotals, getPlayers, getAllGames, getPlateAppearances, getPlayerGameStats, getSeasonBatting, tally, getChampionships, getSeason } from "@/lib/data";
+import { battingLine, fmtRate, hasBatting, type BattingLine } from "@/lib/stats";
 import { rec, fmtPct, ordinal } from "@/lib/format";
 import { Container, PageHeader, SectionTitle, Empty } from "@/components/ui";
 
@@ -21,8 +21,8 @@ export default function RecordsPage() {
   const ranked = [...seasons].sort((a, b) => b.regular_wins / (b.regular_wins + b.regular_losses) - a.regular_wins / (a.regular_wins + a.regular_losses) || b.regular_wins - a.regular_wins);
   const titleRound = tally(getAllGames().filter((g) => g.is_title_game));
 
-  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats();
-  const lines = getPlayers().map((p) => ({ p, line: battingLine(p.slug, games, pas, pgs) })).filter((x) => x.line.g !== null);
+  const games = getAllGames(), pas = getPlateAppearances(), pgs = getPlayerGameStats(), sb = getSeasonBatting();
+  const lines = getPlayers().map((p) => ({ p, line: battingLine(p.slug, games, pas, pgs, {}, sb) })).filter((x) => hasBatting(x.line));
 
   const franchise = [
     { label: "Championships", value: String(t.championships), detail: getChampionships().map((c) => { const x = getSeason(c.season_id)!; return `${x.session} ${x.year}${x.team_name_at_time === "COTC" ? " (as COTC)" : ""}`; }).join(", "), href: "/championships" },

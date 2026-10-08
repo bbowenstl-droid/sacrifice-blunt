@@ -28,6 +28,7 @@ const annotations = read("data/manual/season-annotations.json").seasons;
 const people = read("data/manual/players.json");
 const pas = read("data/manual/plate-appearances.json").plate_appearances;
 const pgs = read("data/manual/player-game-stats.json").player_game_stats;
+const seasonBatting = read("data/manual/season-batting.json").season_batting;
 const extras = read("data/manual/extras.json");
 const reportedResults = read("data/manual/game-results.json").results;
 const usedReports = new Set();
@@ -325,6 +326,19 @@ for (const r of people.season_rosters) {
 }
 for (const p of pas) if (!games.find((g) => g.id === p.game_id)) errors.push(`PA references unknown game ${p.game_id}`);
 for (const p of pgs) if (!games.find((g) => g.id === p.game_id)) errors.push(`player_game_stats references unknown game ${p.game_id}`);
+{
+  const seen = new Set();
+  for (const s of seasonBatting) {
+    const key = `${s.season_id}|${s.player_slug}`;
+    if (seen.has(key)) errors.push(`season_batting has a duplicate row for ${key}`);
+    seen.add(key);
+    if (!playerSlugs.has(s.player_slug)) errors.push(`season_batting references unknown player ${s.player_slug}`);
+    if (!seasons.find((x) => x.id === s.season_id)) errors.push(`season_batting references unknown season ${s.season_id}`);
+    const hits = ["1b", "2b", "3b", "hr"].map((k) => s[k]);
+    if (s.h !== undefined && hits.every((v) => v !== undefined) && hits.reduce((a, v) => a + v, 0) !== s.h) errors.push(`season_batting ${key}: 1B+2B+3B+HR != H`);
+    if (s.h !== undefined && s.ab !== undefined && s.h > s.ab) errors.push(`season_batting ${key}: H > AB`);
+  }
+}
 
 // ---------- review queue: anything a human should look at ----------
 for (const g of games) if (g.status === "unreported" && g.date < "2026-10-07")
@@ -361,6 +375,7 @@ const out = {
   roster_notes: people.roster_notes,
   plate_appearances: pas,
   player_game_stats: pgs,
+  season_batting: seasonBatting,
   awards: extras.awards, milestones: extras.milestones, media: extras.media,
   source_evidence: evidence,
   review_queue: reviewQueue,

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getSeasons, getChampionships, franchiseTotals, getSeason, getGames, getFranchise, getStandings } from "@/lib/data";
+import { getSeasons, getChampionships, franchiseTotals, getSeason, getGames, getFranchise, getStandings, getAllGames, getPlateAppearances, getPlayerGameStats, getSeasonBatting } from "@/lib/data";
 import { teamRecords, streaks } from "@/lib/records";
 import { battingLine, finalize } from "@/lib/stats";
 import type { Game, PlateAppearance } from "@/lib/types";
@@ -126,5 +126,26 @@ describe("static site helpers", () => {
     expect(site.asset("/brand/badge-64.png")).toBe("/sacrifice-blunt/brand/badge-64.png");
     expect(site.SITE_URL).toBe("https://bbowenstl-droid.github.io/sacrifice-blunt");
     delete process.env.NEXT_PUBLIC_BASE_PATH;
+  });
+});
+
+describe("season batting totals", () => {
+  const career = (slug: string, f = {}) => battingLine(slug, getAllGames(), getPlateAppearances(), getPlayerGameStats(), f, getSeasonBatting());
+  it("adds R/RBI/HR from every season but keeps averages to seasons with at-bats", () => {
+    const c = career("chris");
+    expect([c.g, c.ab, c.h, c.hr, c.rbi, c.r]).toEqual([20, 67, 41, 7, 78, 53]);
+    expect(c.avg).toBeCloseTo(41 / 67, 6);
+  });
+  it("uses the printed rates when a season graphic is the only source", () => {
+    const t = career("terrance");
+    expect([t.g, t.ab, t.r, t.rbi, t.hr, t.avg, t.ops]).toEqual([null, null, 6, 12, 1, 0.556, 1.476]);
+  });
+  it("matches the GameChanger season export line", () => {
+    const s = career("troy", { seasonId: "2025-fall" });
+    expect([s.pa, s.ab, s.h, s.tb]).toEqual([27, 25, 16, 26]);
+    expect(s.obp!.toFixed(3)).toBe("0.630");
+  });
+  it("leaves stage splits blank for season totals", () => {
+    expect(career("chris", { stage: "regular" }).g).toBeNull();
   });
 });
